@@ -117,12 +117,12 @@ onClick={()=>router.push(`${'circut machines'.replace(/ /g, '-').toLocaleLowerCa
   </Typography>
 </Box>}
 {resImages?.fourth && <Box
-  onClick={() => router.push(`${'new-arrivals'.replace(/ /g, '-').toLocaleLowerCase() || 'collection'}/products`)}
+  onClick={() => router.push(`${'tools-and-accessories'.replace(/ /g, '-').toLocaleLowerCase() || 'collection'}/products`)}
   className='cursor'
   sx={{ borderRadius: '2%', height: { xs: '48vw', sm: '24vw', md: '24vw', lg: '15vw' }, my: 2, width: { xs: '48vw', sm: '24vw', md: '24vw', lg: '15vw' } }}>
   <img src={resImages?.fourth} alt={`New Arrivals Images image`} style={{ borderRadius: '2%' }} className="img" />
   <Typography sx={{ fontWeight: '500', fontSize: '.65em', textAlign: 'center', px: 1 }}>
-    New Arrivals
+    Tools and Accessories
   </Typography>
 </Box>}
 {resImages?.fifth && <Box

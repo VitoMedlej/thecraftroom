@@ -68,7 +68,7 @@ const Footer = () => (
                         </Box>
                         <Box sx={{width:'80px',ml:2}}>
 
-<img src="https://www.omt.com.lb/storage/services/X0OGLcDfG3zrQ68JDEomA65t9.jpg" alt="Western Union Money Payment method logo" className="img contain" />
+<img src="https://ucarecdn.com/a8afd824-ff38-4683-b789-e0868f7242f7/WU.png" alt="Western Union Money Payment method logo" className="img contain" />
 </Box>
                     </Box>
       </div>
