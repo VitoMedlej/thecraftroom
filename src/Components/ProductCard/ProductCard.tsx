@@ -112,9 +112,9 @@ const ProductCard = ({
                     fontWeight: '400',
                     fontSize: {xs:'1.01em',sm:'1.16em'}
                 }}>
-                    <span>
+                    <del>
                     ${price}
-                    </span>
+                    </del>
                     {' '}
                     <span style={{color:'red'}}>${newPrice}</span>
                     
