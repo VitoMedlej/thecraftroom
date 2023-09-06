@@ -13,6 +13,7 @@ const ProductCard = ({
     category,
     _id,
     width,
+    newPrice,
     height
 } : {
     _id: string,
@@ -21,14 +22,22 @@ const ProductCard = ({
     images: string[],
     category: string,
     width?: string | number
-    height?: string | number
+    height?: string | number,
+    newPrice ?: number,
 }) => {
     const router = useRouter()
     const {addToCart}= useCart()
-
+ function getDiscountPercentage(oldPrice: number, newPrice?: number): number | undefined {
+        if (!oldPrice || !newPrice || !Number(oldPrice) || !Number(newPrice)) {
+          return undefined;
+        }
+        const discount = Number(oldPrice) - Number(newPrice);
+        const discountPercentage = (discount / oldPrice) * 100;
+        return Number(discountPercentage.toFixed(1)) || undefined;
+      }
     return (
         <Box
-            className='  trans'
+            className='relative  trans'
             sx={{
             border : '1px solid #000000a',
             py: 1,
@@ -53,8 +62,14 @@ const ProductCard = ({
                     : ''}
                     alt="Prdouct image"
                     className="img contain"/>
+
             </Box>
-            
+             {getDiscountPercentage(price,newPrice) &&  <Box sx={{position:'absolute',borderRadius:'50%',top:'0%',left:'1%',zIndex:1, width:'50px',height:'50px',background:'red'}}>
+                  <Typography className='flex center items-center' sx={{fontSize:'.75em',alignItems:'center',justifyContent:'center',height:'100%',color:'white'}}>
+
+                      -{getDiscountPercentage(price,newPrice) }%
+                  </Typography>
+                    </Box>}
             <Box 
             sx={{
                 px: .95
@@ -77,7 +92,9 @@ const ProductCard = ({
                 }}>
                     {title}
                 </Typography>
-                <Typography
+              
+              
+                {/* <Typography
                     sx={{
                     my: .5,
                     color:'green',
@@ -85,11 +102,45 @@ const ProductCard = ({
                     fontSize: {xs:'1.01em',sm:'1.16em'}
                 }}>
                     {price}$
-                </Typography>
+                </Typography> */}
+
+
+{newPrice ?   <Typography
+                    sx={{
+                    my: .5,
+                    color:'green',
+                    fontWeight: '400',
+                    fontSize: {xs:'1.01em',sm:'1.16em'}
+                }}>
+                    <span>
+                    ${price}
+                    </span>
+                    {' '}
+                    <span style={{color:'red'}}>${newPrice}</span>
+                    
+                     </Typography>
+                     
+                    : 
+
+                    <Typography
+                    sx={{
+                    my: .5,
+                    color:'green',
+                    fontWeight: '400',
+                    fontSize: {xs:'1.01em',sm:'1.16em'}
+                }}>
+                 
+                   ${price || 0}
+                   
+                    
+                     </Typography>
+                    }
+
+
                 <Btn
             className='cursor gap1'
                 
-                     onClick={()=>addToCart(1,_id,{title,category,img:images[0],_id,price},true)}
+                     onClick={()=>addToCart(1,_id,{title,category,img:images[0],_id,price: Number(newPrice) ?Number(newPrice) : price},true)}
                     
                     sx={{
                         color:'white',

@@ -12,6 +12,7 @@ export interface IProduct {
     ;
     category : string;
     isFeatured?: boolean;
+    newPrice?:number;
 }
 export interface ICartItem {
     title: string;
