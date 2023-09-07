@@ -31,7 +31,7 @@ export const categories = [
 `Heat presses`,
 `Materials`,
 `Tools and Accessories` ,
-`Pens and markers`,
+`Printers`,
 `Customizable Blanks`,
 `Art supplies`,
 ]

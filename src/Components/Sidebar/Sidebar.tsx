@@ -261,7 +261,7 @@ key={i}>
 `Cricut machines`, 
 `Heat presses`,
 
-`Pens and markers`,
+`Printers`,
 `Customizable Blanks`,
 
 ].map((text, index) => {
