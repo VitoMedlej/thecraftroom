@@ -99,11 +99,15 @@ const router= useRouter()
             })
         const res = await req.json();
         if (res?.success && res?.jwt && res?.user  && res?.jwt?.length > 5 ) {
-            localStorage.setItem('5if16wt1',JSON.stringify(res?.jwt))
-            localStorage.setItem('8s01er-0recds',JSON.stringify(res?.user))
+            localStorage.setItem('jciowje12xz',JSON.stringify(res?.jwt))
+            localStorage.setItem('24j1i2cj4io-dadxzazd213',JSON.stringify(res?.user))
             
-            return router.push('/wishlist')
+            return router.push('/profile')
             
+        }
+        else {
+            if (res?.message && !res?.success) {}
+            setError(`Error signing you in, ${res?.message}`)
         }
     }
     catch(err) {

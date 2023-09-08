@@ -1,8 +1,9 @@
 "use client";
-import {useContext} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {Drawer,List,Divider,ListItem,ListItemButton,ListItemText,ListItemIcon,Box, Typography, Accordion, AccordionDetails, AccordionSummary} from '@mui/material';
 import {IoShirtOutline,IoShirtSharp} from 'react-icons/io5';
 import { IconButton } from '@mui/material';
+import {AiOutlineHeart} from 'react-icons/ai'
 
 import { useRouter } from 'next/navigation';
 import {AiOutlineArrowUp} from 'react-icons/ai';
@@ -11,11 +12,26 @@ import { DrawerContext } from '@/context/Contexts';
 import {GrFormClose} from 'react-icons/gr'
 import SMicons from '../SMicons/SMicons';
 import { categories } from '../Navbar/Navbar';
+import Btn from '../Btn/Btn';
 
 
 export default function TemporaryDrawer({cates}:{cates:string[] | undefined}) {
- 
+  
   const {open, setOpen} = useContext(DrawerContext);
+  const [localUser,setLocalUser] = useState<{name?:string,email?:string} | null>(null)
+
+  const fetchUserAndList = async () => {
+    const user = localStorage.getItem('24j1i2cj4io-dadxzazd213')
+    if (user) {
+           let parsedUser = JSON.parse(user)
+           if (!parsedUser) {return}
+           setLocalUser(parsedUser)
+    }
+}
+useEffect(()=>{
+  fetchUserAndList()
+
+},[])
   const router = useRouter();
   const toggleDrawer =
     ( open: boolean) =>
@@ -284,8 +300,15 @@ key={i}>
         
         }
       </List>
-      <SMicons/>
-
+        {/* <SMicons/> */}
+        
+      {!localUser &&   <Btn sx={{width:'90%',mt:1,mx:'auto'}} className='' onClick={()=>{setOpen(false);router.push('/account/login')}}>
+          Login
+        </Btn>}
+        <Btn sx={{color:'white',background:'red',borderColor:'red',gap:.5,width:'90%',mt:1,mx:'auto'}} className='' onClick={()=>{setOpen(false);router.push('/profile')}}>
+         My Favorites
+         <AiOutlineHeart/>
+        </Btn>
       <Divider />
       
     </Box>

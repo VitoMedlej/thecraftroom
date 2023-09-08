@@ -1,6 +1,5 @@
 "use client"
 // import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {
     Typography,
     Grid,
@@ -26,7 +25,6 @@ import { useRouter } from 'next/navigation';
 
 
 
-const theme = createTheme();
 const LoginForm = () => {
 const router= useRouter()
 const [error, setError] = useState(''); 
@@ -85,11 +83,15 @@ const [error, setError] = useState('');
             })
             })
         const res = await req.json();
+        console.log('res: ', res);
         if (res?.success && res?.jwt  && res?.jwt?.length > 5  && res?.user) {
-            localStorage.setItem('5if16wt1',JSON.stringify(res?.jwt))
-            localStorage.setItem('8s01er-0recds',JSON.stringify(res?.user))
-
-            router.push('/wishlist')
+            localStorage.setItem('jciowje12xz',JSON.stringify(res?.jwt))
+            localStorage.setItem('24j1i2cj4io-dadxzazd213',JSON.stringify(res?.user))
+            router.push('/profile')
+        }
+        else {
+            if (res?.message && !res?.success) {}
+            setError(`Error signing you in, ${res?.message}`)
         }
     }
     catch(err) {
@@ -99,13 +101,13 @@ const [error, setError] = useState('');
     }
 
     return (
-        <ThemeProvider theme={theme}>
             <Container component="main" maxWidth='sm' sx={{
-                width: '100%',my:8,maxWidth:'400px'
+                width: '100%',mt:20,maxWidth:'400px'
             }}>
                 <CssBaseline/>
                 <Box
                     sx={{
+                        mt:20,
                     boxShadow: 'rgb(0 0 0 / 15%) 0px 8px 24px',
                     p: {
                         xs: ' 2em 1em',
@@ -240,7 +242,6 @@ disabled={isLoading}
         </Box>
 
             </Container>
-        </ThemeProvider>
     );
 }
 export default LoginForm

@@ -6,6 +6,7 @@ import Btn from '../Btn/Btn'
 // import {GrAdd} from 'react-icons/gr'
 import {useRouter} from 'next/navigation'
 import useCart from '@/Hooks/useCart'
+import WishlistButton from './WishlistButton'
 const ProductCard = ({
     title,
     price,
@@ -14,7 +15,9 @@ const ProductCard = ({
     _id,
     width,
     newPrice,
-    height
+    height,
+    whishedItem,
+    onRemove
 } : {
     _id: string,
     title: string,
@@ -24,9 +27,12 @@ const ProductCard = ({
     width?: string | number
     height?: string | number,
     newPrice ?: number,
+    whishedItem ?:boolean,
+    onRemove?: (_id: string) => void
 }) => {
     const router = useRouter()
     const {addToCart}= useCart()
+    // const [liked,setLiked] = React.useState(false)
  function getDiscountPercentage(oldPrice: number, newPrice?: number): number | undefined {
         if (!oldPrice || !newPrice || !Number(oldPrice) || !Number(newPrice)) {
           return undefined;
@@ -136,25 +142,42 @@ const ProductCard = ({
                      </Typography>
                     }
 
+                <Box className="flex">
 
-                <Btn
+          {!whishedItem &&      <Btn
             className='cursor gap1'
                 
                      onClick={()=>addToCart(1,_id,{title,category,img:images[0],_id,price: Number(newPrice) ?Number(newPrice) : price},true)}
                     
                     sx={{
                         color:'white',
-                        width:'100%',
+                        width:'70%',
                    
                     borderRadius:25,
                   
                  
                 }}>
                     Add To Cart
-                </Btn>
+                </Btn>}
+
+           
+                <WishlistButton onRemove={onRemove} productId={_id} product={{ title,
+    price,
+    images,
+    category,
+    _id,
+    width,
+    height}}/>
+                </Box>
+
+                </Box>
+
+
+
+
             </Box>
-        </Box>
-    )
+    
+        ) 
 }
 
 export default ProductCard
