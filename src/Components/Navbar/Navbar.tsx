@@ -164,6 +164,15 @@ export default function Navbar() {
                             <AiOutlineHome color='black'/>
                         </IconButton>
                         <IconButton
+                            onClick={() => router.push('/profile')}
+                            sx={{
+                            color: 'black'
+                        }}>
+
+                                <AiOutlineHeart color='black'/>
+                          
+                        </IconButton>
+                        <IconButton
                             onClick={() => setCartOpen(!cartOpen)}
                             sx={{
                                 margin : '8px',padding:0,
