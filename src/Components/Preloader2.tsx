@@ -31,7 +31,7 @@ const Preloader2 = ({data,totalPages}:any) => {
 
 
     const fetchData = async (val:number) => {
-    const url =  `/api/get-cate?category=${category ? category : 'collection'}&page=${Number(val - 1) || 0}&type=${type ? type : null}`  ;
+    const url =  `/api/get-cate?category=${category ? category : 'collection'}&page=${Number(val - 1) || 0}&type=${type ? encodeURIComponent(type) : null}`  ;
     const req = await fetch(`${server}${url}`,{cache:'no-store', next: { revalidate: 0 }})
     const res = await req.json()
     console.log('res: ', res);

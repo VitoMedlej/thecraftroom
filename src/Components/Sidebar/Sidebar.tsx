@@ -132,7 +132,7 @@ router.push(`/materials/products`)}}
 
   onClick={()=>
     {setOpen(false);
-    router.push(`/materials/products?type=${i.replace(/ /g, '-').toLocaleLowerCase()}`)}}
+    router.push(`/materials/products?type=${encodeURIComponent(i).toLocaleLowerCase()}`)}}
 
 key={i}>
 
@@ -193,7 +193,7 @@ router.push(`/tools-and-accessories/products`)}}
 
 onClick={()=>
 {setOpen(false);
-router.push(`/tools-and-accessories/products?type=${i.replace(/ /g, '-').toLocaleLowerCase()}`)}}
+router.push(`/tools-and-accessories/products?type=${encodeURIComponent(i).toLocaleLowerCase()}`)}}
 
 key={i}>
 
@@ -254,7 +254,7 @@ router.push(`/art-supplies/products`)}}
 
 onClick={()=>
 {setOpen(false);
-router.push(`/art-supplies/products?type=${i.replace(/ /g, '-').toLocaleLowerCase()}`)}}
+router.push(`/art-supplies/products?type=${encodeURIComponent(i).toLocaleLowerCase()}`)}}
 
 key={i}>
 

@@ -36,7 +36,7 @@ export async function GET(req : NextRequest, res : NextApiResponse) {
     
         
         let filterByCate = !category || category === 'collection' || category === 'category' ? null : `${category}`.replace(/-/g, ' ').toLocaleLowerCase()
-        let filterByType = !type || type === null || type == 'null'  ? null : `${type}`.replace(/-/g, ' ').toLocaleLowerCase()
+        let filterByType = !type || type === null || type == 'null'  ? null : decodeURIComponent(type).toLocaleLowerCase()
         let filterBySearch = search && search?.length > 1; 
         
     const ProductsCollection = await client
