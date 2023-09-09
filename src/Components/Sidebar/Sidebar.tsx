@@ -13,6 +13,7 @@ import {GrFormClose} from 'react-icons/gr'
 import SMicons from '../SMicons/SMicons';
 import { categories } from '../Navbar/Navbar';
 import Btn from '../Btn/Btn';
+import Link from 'next/link';
 
 
 export default function TemporaryDrawer({cates}:{cates:string[] | undefined}) {
@@ -258,7 +259,7 @@ router.push(`/art-supplies/products?type=${i.replace(/ /g, '-').toLocaleLowerCas
 key={i}>
 
 
-<ListItemButton >
+<ListItemButton>
             <Typography sx={{fontWeight:300}}>
         -{i}
       </Typography>
@@ -301,7 +302,14 @@ key={i}>
         }
       </List>
         {/* <SMicons/> */}
+        <Link href='/about' className='decor-none' style={{color:'black',padding:' .25em 0'}}>
+        <ListItemButton>
         
+        <Typography sx={{ color:'black',fontWeight:600}}>
+         About Us
+            </Typography>
+            </ListItemButton>
+      </Link>
       {!localUser &&   <Btn sx={{width:'90%',mt:1,mx:'auto'}} className='' onClick={()=>{setOpen(false);router.push('/account/login')}}>
           Login
         </Btn>}
