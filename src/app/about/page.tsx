@@ -28,7 +28,7 @@ const Index = () => {
         <Box sx={{my:4}}>
                 {
                     text.map(i=>{
-                            return <Typography sx={{maxWidth:'md',py:1}} className='auto text-center'>{i}</Typography>
+                            return <Typography key={i} sx={{maxWidth:'md',py:1}} className='auto text-center'>{i}</Typography>
                     })
                 } 
         </Box>
