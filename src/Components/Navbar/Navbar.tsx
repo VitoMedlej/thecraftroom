@@ -16,7 +16,7 @@ import {Badge, Divider, Typography} from '@mui/material';
 import {useRouter} from 'next/navigation';
 // import {AiOutlinePhone, AiOutlineSearch, AiOutlineMenu} from 'react-icons/ai'
 import {CiSearch,CiShoppingCart} from 'react-icons/ci'
-import {AiOutlineHome,AiOutlineShoppingCart} from 'react-icons/ai'
+import {AiOutlineHome,AiOutlineHeart,AiOutlineShoppingCart} from 'react-icons/ai'
 import SearchInput from './SearchInput';
 
 import NavButtom from './NavButtom';
@@ -240,6 +240,15 @@ export default function Navbar() {
                         }}>
 
                                 <CiSearch color='black'/>
+                          
+                        </IconButton>
+                        <IconButton
+                            onClick={() => router.push('/profile')}
+                            sx={{
+                            color: 'black'
+                        }}>
+
+                                <AiOutlineHeart color='black'/>
                           
                         </IconButton>
 

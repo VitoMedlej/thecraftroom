@@ -66,6 +66,9 @@ const Footer = () => (
                         <Box sx={{width:'80px'}}>
                         <img src="https://whish.money/app/logos/whish_v2.png" alt="Whish Money Payment method logo" className="img contain" />
                         </Box>
+                        <Box sx={{width:'80px'}}>
+                        <img src="https://th.bing.com/th/id/R.ece974086208cee8d37d21123f562abe?rik=4IJtiW%2b9iesE9w&riu=http%3a%2f%2f2.bp.blogspot.com%2f-IaVdwhUI7ZU%2fUBerQ27aeLI%2fAAAAAAAAAEo%2f0hnhKNuuna4%2fs1600%2fOMT-BLACK-LOGO.jpg&ehk=PssKqWqp%2bXRrShOU%2bTU%2bxGsH89Y%2fTze%2bIql7rR3SBf4%3d&risl=&pid=ImgRaw&r=0" alt="Whish Money Payment method logo" className="img contain" />
+                        </Box>
                         <Box sx={{width:'80px',ml:2}}>
 
 <img src="https://ucarecdn.com/a8afd824-ff38-4683-b789-e0868f7242f7/WU.png" alt="Western Union Money Payment method logo" className="img contain" />
