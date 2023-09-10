@@ -8,7 +8,8 @@ import Checkbox from '@mui/material/Checkbox';
 import { useState } from 'react';
 
 export default function AddressForm({info,setInfo,handleChange}:{handleChange:any,setInfo:any,info:any}) {
- 
+  const [data,setData]= useState(null)
+  
   return (
           <Box component='form' >
       <Typography variant="h6" gutterBottom>
