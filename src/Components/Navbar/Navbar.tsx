@@ -86,7 +86,7 @@ export default function Navbar() {
                     height:'20px',
             py:.45}} >
             <Typography sx={{fontSize:{xs:'.7em',sm:'.8em'}}} className='center text-center'>
-            Free Delivery On Orders Over $40 In Lebanon 
+            Free Delivery On Orders Over $45 In Lebanon 
             </Typography>
               
         </Box>
