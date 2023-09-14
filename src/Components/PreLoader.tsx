@@ -10,6 +10,7 @@ import Perks from './Perks/Perks'
 
 const 
 PreLoader = ({data,resImages}:any) => {
+  console.log('data: ', data);
   const router= useRouter();
   
   const cates = resImages?.first ? [resImages?.first , resImages?.second , resImages?.third , resImages?.fourth ,resImages?.fifth] : [
