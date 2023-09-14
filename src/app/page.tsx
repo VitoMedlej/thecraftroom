@@ -40,7 +40,7 @@ export default async function Home() {
 try {
 
       // const req = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/get-data`,{ next: { revalidate: 10 } })
-      const req = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/get-data`,{ cache: 'no-store' ,next:{revalidate:0}})
+      const req = await fetch(`https://www.thecraftroom-lb.com/api/get-data`,{ cache: 'no-store' ,next:{revalidate:0}})
       let res = await req.json()
       console.log('res: ', res);
       const reqImages = await fetch(`https://getpantry.cloud/apiv1/pantry/11c7944e-bdec-4962-bcad-f24fe432bca6/basket/Images`,{ next: { revalidate: 400 } })
