@@ -6,6 +6,7 @@ import Sidebar from '@/Components/Sidebar/Sidebar'
 import ScrollToTop from '@/Components/ScrollToTop/ScrollToTop'
 import QuickCart from '@/Components/Shared/QuickCart/QuickCart'
 import ContextWrapper from '@/context/Contexts'
+import Popup from '@/Components/Popup/Popup'
 
 export const metadata = {
     title: 'The Craft Room | Arts & Crafts Supplies, Cricut Products',
@@ -36,6 +37,7 @@ export default function RootLayout({children} : {
                     <Sidebar cates={undefined}/>
                     <QuickCart/>
                     <ScrollToTop/>
+                    <Popup/>
                     <main style={{marginTop:6}}>
 
                      {children}

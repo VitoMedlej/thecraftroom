@@ -28,7 +28,8 @@ export const Categories = createContext < any > ([]);
         {/* <SideBar cates={cates}/> */}
                 {/* <NextNProgress/> */}
             {/* <QuickCart/> */}
-            <NextNProgress color='red'/>
+            
+            {/* <NextNProgress color='red'/> */}
             {children}
    
         </CartContext.Provider>

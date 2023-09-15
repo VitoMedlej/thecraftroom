@@ -8,6 +8,44 @@ import MainCarousel from './MainCarousel/MainCarousel'
 import { useRouter } from 'next/navigation'
 import Perks from './Perks/Perks'
 
+
+
+const brands = [{
+  title:'silhouette',
+  img:'https://ucarecdn.com/8a8ba7d3-dae7-4d42-8d6c-950e7db157b5/WhatsAppImage20230904at2232041.jpeg'
+},
+{
+  title:'teckwrap',
+  img:'https://ucarecdn.com/f16e8461-8dc8-4165-a2d6-4d0a76607ad6/WhatsAppImage20230904at223200.jpeg%20'
+},
+{
+  title:'ektools',
+  img:'https://ucarecdn.com/c007fad7-b21e-4990-ae9d-6883a385176f/WhatsAppImage20230904at223204.jpeg'
+},
+{
+  title:'circut',
+  img:'https://ucarecdn.com/decbc92d-9ee6-4115-99dd-897e4fd9417f/WhatsAppImage20230904at223201.jpeg'
+},
+{
+  title:'modpodge',
+  img:'https://ucarecdn.com/2c0edf80-5b75-459f-9f0d-5a57a4927650/WhatsAppImage20230904at223205.jpeg'
+},
+{
+  title:'we r memory keepers',
+  img:'https://ucarecdn.com/60dcae72-8027-4cde-8d50-33eec5b99fb6/WhatsAppImage20230904at223203.jpeg'
+},
+{
+  title:'sizzix',
+  img:'https://ucarecdn.com/0c0e6b60-39ee-4151-9c0e-1e2509f1435f/WhatsAppImage20230904at223202.jpeg'
+},
+
+{
+  title:'armour products',
+  img:'https://ucarecdn.com/d4c7775a-b7e2-421c-b2ad-4db09b8ee864/WhatsAppImage20230904at2232011.jpeg'
+},
+
+]
+
 const 
 PreLoader = ({data,resImages}:any) => {
   console.log('data: ', data);
@@ -143,6 +181,31 @@ onClick={()=>router.push(`${'circut machines'.replace(/ /g, '-').toLocaleLowerCa
 
       <Box/>
         <HomeProductsCarousel Collectiontitle={"Browse Our Collections"} delay={3000} data={data?.featuredProducts}/>
+        <Container>
+        <Typography
+                className='sectionTitle text-center center auto box'
+                sx={{
+             
+                fontSize: {
+                    xs: '1.2em',
+                    sm: '1.4em'
+                },
+                padding:.5,
+                pb:1,
+                fontWeight: '300'
+            }}>
+              Shop By Brand
+            </Typography>
+              <Box className='wrap cursor pointer flex gap1 gap'>
+                {
+                  brands.map(i=>{
+                    return <Box key={i?.img} onClick={()=>router.push(`/collection/products?brand=${encodeURIComponent(i.title)}`)} sx={{height:'100px',width:{xs:'49%',sm:'150px'}}}>
+                      <img src={i?.img} alt="" className="img contain" />
+                    </Box>
+                  })
+                }
+              </Box>
+        </Container>
         <HomeProductCollection products={ data?.products }/>
 
       

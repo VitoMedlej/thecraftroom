@@ -15,6 +15,9 @@ export async function GET(req : NextRequest, res : NextApiResponse) {
     const type = searchParams.get('type')
     const search = searchParams.get('search')
     const page = searchParams.get('page')
+    const brand = searchParams.get('brand')
+    
+
     // const {page} = ctx?.searchParams;
     // const {type} = ctx?.searchParams;
     const pageSize = 12; // Number of items per page
@@ -34,6 +37,7 @@ export async function GET(req : NextRequest, res : NextApiResponse) {
         // let category=  searchParams.get('category') || null
         // let page=  searchParams.get('page') || 0
     
+        let filterByBrand = !brand || brand == 'null'  ? null : `${decodeURIComponent(brand)}`.toLocaleLowerCase()
         
         let filterByCate = !category || category === 'collection' || category === 'category' ? null : `${category}`.replace(/-/g, ' ').toLocaleLowerCase()
         let filterByType = !type || type === null || type == 'null'  ? null : decodeURIComponent(type).toLocaleLowerCase()
@@ -48,6 +52,15 @@ export async function GET(req : NextRequest, res : NextApiResponse) {
 
     
     const filterQuery = () => {
+      if (filterByBrand) {
+        return  {
+          brand: {
+            $regex: new RegExp(
+              `^${filterByBrand?.toLocaleLowerCase()}$`,
+              'i'
+              ),
+      }}
+      }
       if (filterBySearch) {
         return {
       $or: [
