@@ -1,22 +1,36 @@
 "use client"
 import { Box, IconButton, Modal, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Btn from '../Btn/Btn'
 import {GrFormClose} from 'react-icons/gr'
 import { useRouter } from 'next/navigation'
 
 
 const Index = () => {
-  const router = useRouter()
-  const [open,setOpen] = useState(false)
+  const router = useRouter();
+  const [open, setOpen] = useState(false);
+
+  // Check if the modal should be opened based on localStorage
+  useEffect(() => {
+    const hasModalBeenOpened = localStorage.getItem('modalOpened');
+    if (!hasModalBeenOpened) {
+      setOpen(true);
+    }
+  }, []);
+
+  // Function to close the modal and set the flag in localStorage
+  const closeModal = () => {
+    setOpen(false);
+    localStorage.setItem('modalOpened', 'true');
+  };
   return (
     <Modal open={open} 
-    onClose={()=>setOpen(false)}
+    onClose={closeModal}
     className='flex center auto items-center' sx={{}}>
     <>
       <Box className='flex row relative' sx={{background:'white',width:{xs:'100%',sm:'600px'},height:{xs:'400px',sm:'500px'}}}>
       <IconButton
-      onClick={()=>setOpen(false)}
+      onClick={()=>closeModal()}
       sx={{color:'red',position:'absolute',top:0,right:0}}>
         <GrFormClose />
       </IconButton>
