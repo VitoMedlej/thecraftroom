@@ -27,7 +27,7 @@ const brands = [{
   img:'https://ucarecdn.com/decbc92d-9ee6-4115-99dd-897e4fd9417f/WhatsAppImage20230904at223201.jpeg'
 },
 {
-  title:'modpodge',
+  title:'mod podge',
   img:'https://ucarecdn.com/2c0edf80-5b75-459f-9f0d-5a57a4927650/WhatsAppImage20230904at223205.jpeg'
 },
 {
@@ -48,16 +48,15 @@ const brands = [{
 
 const 
 PreLoader = ({data,resImages}:any) => {
-  console.log('data: ', data);
   const router= useRouter();
   
-  const cates = resImages?.first ? [resImages?.first , resImages?.second , resImages?.third , resImages?.fourth ,resImages?.fifth] : [
-    'https://ucarecdn.com/4635c19f-1ac8-454f-aaf7-8c67adfe4fd0/WhatsAppImage20230824at191722.jpeg',
-    'https://4.bp.blogspot.com/-Jt0CZBa0r6s/WQoWgzdYryI/AAAAAAAAuE4/WNVqO4RNJEoJZeWAGCCDtT-YdkxV-JaPwCPcB/s640/wholesale%2Bcraft%2Bblanks.JPG',
-    'https://ucarecdn.com/e490c41b-ddd1-4ef1-a06c-b1b0692bd83a/WhatsAppImage20230824at191716.jpeg',
-    'https://ucarecdn.com/bfb9f54b-ee34-4cdc-930c-3a97234595fe/WhatsAppImage20230824at191719.jpeg',
-    'https://ucarecdn.com/d01c6f74-4d3b-46c4-9d31-67966950b09e/WhatsAppImage20230824at191720.jpeg'
-  ];
+  // const cates = resImages?.first ? [resImages?.first , resImages?.second , resImages?.third , resImages?.fourth ,resImages?.fifth] : [
+  //   'https://ucarecdn.com/4635c19f-1ac8-454f-aaf7-8c67adfe4fd0/WhatsAppImage20230824at191722.jpeg',
+  //   'https://4.bp.blogspot.com/-Jt0CZBa0r6s/WQoWgzdYryI/AAAAAAAAuE4/WNVqO4RNJEoJZeWAGCCDtT-YdkxV-JaPwCPcB/s640/wholesale%2Bcraft%2Bblanks.JPG',
+  //   'https://ucarecdn.com/e490c41b-ddd1-4ef1-a06c-b1b0692bd83a/WhatsAppImage20230824at191716.jpeg',
+  //   'https://ucarecdn.com/bfb9f54b-ee34-4cdc-930c-3a97234595fe/WhatsAppImage20230824at191719.jpeg',
+  //   'https://ucarecdn.com/d01c6f74-4d3b-46c4-9d31-67966950b09e/WhatsAppImage20230824at191720.jpeg'
+  // ];
   
   
   // [{img:'https://ucarecdn.com/4635c19f-1ac8-454f-aaf7-8c67adfe4fd0/WhatsAppImage20230824at191722.jpeg',category:'Cricut machines'},
@@ -196,10 +195,10 @@ onClick={()=>router.push(`${'circut machines'.replace(/ /g, '-').toLocaleLowerCa
             }}>
               Shop By Brand
             </Typography>
-              <Box className='wrap cursor pointer flex gap1 gap'>
+              <Box className='wrap   flex gap1 gap'>
                 {
                   brands.map(i=>{
-                    return <Box key={i?.img} onClick={()=>router.push(`/collection/products?brand=${encodeURIComponent(i.title)}`)} sx={{height:'100px',width:{xs:'49%',sm:'150px'}}}>
+                    return <Box className='cursor pointer' key={i?.img} onClick={()=>router.push(`/collection/products?brand=${encodeURIComponent(i.title)}`)} sx={{border:'1px solid #80808030',height:'100px',width:{xs:'49%',sm:'150px'}}}>
                       <img src={i?.img} alt="" className="img contain" />
                     </Box>
                   })
