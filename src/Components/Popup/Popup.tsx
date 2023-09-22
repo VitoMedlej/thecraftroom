@@ -35,7 +35,7 @@ const Index = () => {
         <GrFormClose />
       </IconButton>
 
-      <Box sx={{width:'50%',px:1,height:'100%'}} className='flex col text-center items-center center'>
+      <Box sx={{width:'100%',px:1,height:'100%'}} className='flex col text-center items-center center'>
         <Typography className='clr' sx={{fontSize:'1.5em',fontWeight:600}}>
           WELCOME TO THE CRAFT ROOM!
         </Typography>
@@ -56,9 +56,9 @@ const Index = () => {
           Sign In
         </Btn>
       </Box>
-      <Box sx={{width:'50%'}}>
+      {/* <Box sx={{width:'50%'}}>
         <img src="https://images.pexels.com/photos/3905874/pexels-photo-3905874.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" className="img cover" />
-      </Box>
+      </Box> */}
       </Box>
       </>
    
