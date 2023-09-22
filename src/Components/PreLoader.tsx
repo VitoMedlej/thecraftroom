@@ -12,36 +12,36 @@ import Perks from './Perks/Perks'
 
 const brands = [{
   title:'silhouette',
-  img:'https://ucarecdn.com/8a8ba7d3-dae7-4d42-8d6c-950e7db157b5/WhatsAppImage20230904at2232041.jpeg'
+  img:'https://ucarecdn.com/c0701c86-58cf-4c6f-8301-01af868ffabd/images'
 },
 {
   title:'teckwrap',
-  img:'https://ucarecdn.com/f16e8461-8dc8-4165-a2d6-4d0a76607ad6/WhatsAppImage20230904at223200.jpeg%20'
+  img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTJC5cnjZkAgouZsCEUh80dRYS21aQ_588aN7e8VItwbXaz1snrYGilvW26z7PNWXDDZY&usqp=CAU'
 },
 {
   title:'ektools',
-  img:'https://ucarecdn.com/c007fad7-b21e-4990-ae9d-6883a385176f/WhatsAppImage20230904at223204.jpeg'
+  img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqIG2nYTrGFvcBxytUlkMQkjetLhAYAJxVWBSdEC_TdQvskwY-sObNJkbbRtz_gFi4rw&usqp=CAU'
 },
 {
   title:'circut',
-  img:'https://ucarecdn.com/decbc92d-9ee6-4115-99dd-897e4fd9417f/WhatsAppImage20230904at223201.jpeg'
+  img:'https://ucarecdn.com/8b4188f1-3eef-4694-be6f-89aa10200a2d/cricutlogo.png'
 },
 {
   title:'mod podge',
-  img:'https://ucarecdn.com/2c0edf80-5b75-459f-9f0d-5a57a4927650/WhatsAppImage20230904at223205.jpeg'
+  img:'https://bricolor.es/files/product_brands/2023/01/08/Mod-podge-logo.png'
 },
 {
   title:'we r memory keepers',
-  img:'https://ucarecdn.com/60dcae72-8027-4cde-8d50-33eec5b99fb6/WhatsAppImage20230904at223203.jpeg'
+  img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-XC7wLEejlsNzFwGr1kT6wJxtvSZyKz7RvJJg6gmbKIDejp8W_Psq2lZlzu-h6f-x_2o&usqp=CAU'
 },
 {
   title:'sizzix',
-  img:'https://ucarecdn.com/0c0e6b60-39ee-4151-9c0e-1e2509f1435f/WhatsAppImage20230904at223202.jpeg'
+  img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz2x89QtxapqVyHQDxrYqOjUNAikrtnXlD1EzA7zDQZR93UvpxFB6ZwEC2KIkqUiD7Ln4&usqp=CAU'
 },
 
 {
   title:'armour products',
-  img:'https://ucarecdn.com/d4c7775a-b7e2-421c-b2ad-4db09b8ee864/WhatsAppImage20230904at2232011.jpeg'
+  img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFnG1WBhkmhDNPAAM3PBcWcSEm3PRlbzMvxeX2VhDfHZ9OYnIELBZUpNnACKahYSx7L0M&usqp=CAU'
 },
 
 ]
