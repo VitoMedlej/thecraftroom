@@ -19,11 +19,11 @@ const brands = [{
   img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTJC5cnjZkAgouZsCEUh80dRYS21aQ_588aN7e8VItwbXaz1snrYGilvW26z7PNWXDDZY&usqp=CAU'
 },
 {
-  title:'ektools',
+  title:'ek tools',
   img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqIG2nYTrGFvcBxytUlkMQkjetLhAYAJxVWBSdEC_TdQvskwY-sObNJkbbRtz_gFi4rw&usqp=CAU'
 },
 {
-  title:'circut',
+  title:'cricut',
   img:'https://ucarecdn.com/8b4188f1-3eef-4694-be6f-89aa10200a2d/cricutlogo.png'
 },
 {
@@ -45,6 +45,7 @@ const brands = [{
 },
 
 ]
+// const brands = ["Teckwrap", "Cricut", "Armour Products", "Sizzix", "We R Memory Keepers", "EK Tools", "Silhouette", "Mod Podge"]
 
 const 
 PreLoader = ({data,resImages}:any) => {
