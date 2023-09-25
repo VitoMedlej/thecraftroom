@@ -132,7 +132,7 @@ onClick={()=>router.push(`${'cricut machines'.replace(/ /g, '-').toLocaleLowerCa
  my:2,width:{xs:'48vw',sm:'24vw',md:'24vw',lg:'15vw'}}}>
         <img src={resImages?.first} alt={`cricut Machines Images image`} style={{borderRadius:'2%'}} className="img" />
         <Typography sx={{fontWeight:'500',fontSize:'.65em',textAlign: 'center',px:1}}>
-        cricut Machines
+        Cricut Machines
 </Typography>
 </Box>}
 
