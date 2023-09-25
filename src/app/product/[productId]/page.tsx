@@ -90,15 +90,17 @@ const Index = () => {
                In Stock
              </Typography> */}
             
-             <Typography 
+   {data?.product?.inStock !== false &&          <Typography 
                  component={'h1'} sx={{my:.25,fontWeight:500,color:'green',fontSize:{xs:'1em',sm:'1.25sem'}}}>
                  ${data?.product?.price || 0}
              </Typography>
+             
+            }
          </Box>
    
       
          
-             <Box className='flex wrap ' sx={{my:2,position:'relative'}}>
+         {data?.product?.inStock !== false ?     <Box className='flex wrap ' sx={{my:2,position:'relative'}}>
               <Box sx={{width:'100%'}}>
 
              <QuantityPicker 
@@ -107,7 +109,7 @@ const Index = () => {
                     min={1} max={10} value={selectedQuantity}/>
               </Box>
 
-             <Btn 
+       <Btn 
                      onClick={()=>addToCart(selectedQuantity,`${data?.product?._id}`,{title : data.product.title ,category: data.product.category,img:data.product.images[0], _id : data.product._id,price:data.product.price, selectedColor},true,true)}
              
               sx={{gap:.5,
@@ -121,6 +123,11 @@ const Index = () => {
                  <BsWhatsapp fontSize={'medium'}/>
              </Btn>
              </Box>
+            :
+            <Typography component={'h1'} sx={{color:'red',fontWeight:500,pt:1,fontSize:{xs:'1.5em',sm:'2.25sem'}}}>
+            Out of Stock
+           </Typography> 
+            }
          <Divider></Divider>
 
          <Box sx={{pt:4}}>

@@ -75,6 +75,8 @@ const Preloader2 = ({data,totalPages}:any) => {
         {products && products?.length > 0 ? products.map((i:IProduct) => {
             return <ProductCard
             key={i?._id}
+            inStock={i?.inStock 
+            }
             newPrice={i?.newPrice}
                 _id={i._id}
                 title={i.title}

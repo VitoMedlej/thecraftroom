@@ -9,6 +9,7 @@ import useCart from '@/Hooks/useCart'
 import WishlistButton from './WishlistButton'
 const ProductCard = ({
     title,
+    inStock,
     price,
     images,
     category,
@@ -20,7 +21,8 @@ const ProductCard = ({
     onRemove
 } : {
     _id: string,
-    title: string,
+    inStock ?: boolean,
+title: string,
     price: number,
     images: string[],
     category: string,
@@ -112,8 +114,11 @@ const ProductCard = ({
 
 
 {newPrice ?   <Typography
+
                     sx={{
-                    my: .5,
+                        display: inStock !== false ? 'flex':'none',
+
+                        my: .5,
                     color:'green',
                     fontWeight: '400',
                     fontSize: {xs:'1.01em',sm:'1.16em'}
@@ -127,10 +132,11 @@ const ProductCard = ({
                      </Typography>
                      
                     : 
-
+                
                     <Typography
                     sx={{
-                    my: .5,
+                        display: inStock !== false ? 'flex':'none',
+                        my: .5,
                     color:'green',
                     fontWeight: '400',
                     fontSize: {xs:'1.01em',sm:'1.16em'}
@@ -142,7 +148,7 @@ const ProductCard = ({
                      </Typography>
                     }
 
-                <Box className="flex">
+          {inStock !== false ?      <Box className="flex">
 
           {!whishedItem &&      <Btn
             className='cursor gap1'
@@ -169,6 +175,19 @@ const ProductCard = ({
     width,
     height}}/>
                 </Box>
+                :
+
+                      <Typography
+                      sx={{
+                      mb:.5,
+                      color:'red',
+                      fontWeight: '600',
+                      fontSize: {xs:'.99em',sm:'1.06em'}
+                  }}>
+                      Out Of Stock
+                  </Typography>
+            
+            }
 
                 </Box>
 

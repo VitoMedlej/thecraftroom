@@ -13,6 +13,7 @@ export interface IProduct {
     category : string;
     isFeatured?: boolean;
     newPrice?:number;
+    inStock ?:boolean;
 }
 export interface ICartItem {
     title: string;

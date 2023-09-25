@@ -47,6 +47,8 @@ const HomeProductCollection = ({products} : {
                     ?.length > 0 && products.map(i => {
 
                         return <ProductCard
+                        inStock={i?.inStock 
+                        }
                             newPrice={i
                             ?.newPrice}
                             key={i

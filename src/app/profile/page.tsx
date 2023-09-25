@@ -78,6 +78,8 @@ const Index = () => {
                             if (!item?._id) return;
                             return <ProductCard
                             key={item?._id}
+                            inStock={item?.inStock 
+                            }
                             onRemove={() => handleRemoveFromWishlist(item._id)}
                             whishedItem={true} _id={item?._id} title={item?.title} price={item?.price} images={[`${item?.img}`]} category={item?.category}/>
                         })
