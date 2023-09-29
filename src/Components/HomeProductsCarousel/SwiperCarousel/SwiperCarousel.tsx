@@ -77,7 +77,7 @@ const SwiperCarousel = ({data, delay} : {
                             width='100%'
                             title={item.title}
                             images={item.images}
-                            price={item.newPrice ? item.newPrice :item.price}
+                            price={item.price}
                             _id={item._id}
                             category={item.category}/>
                     </SwiperSlide>
