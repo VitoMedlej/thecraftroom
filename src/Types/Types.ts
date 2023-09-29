@@ -16,6 +16,7 @@ export interface IProduct {
     inStock ?:boolean;
 }
 export interface ICartItem {
+    newPrice?: number;
     title: string;
     _id: string;
     price: number;

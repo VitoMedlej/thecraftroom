@@ -114,7 +114,7 @@ const Cart = () => {
                         selectedColor={item?.selectedColor}
                         onChange={refetchState}
                         key={item._id}
-                        img={item.img} qty={item.qty} remove={remove} title={item.title} _id={item._id} price={item.price}/>
+                        img={item.img} qty={item.qty} remove={remove} title={item.title} _id={item._id} price={item?.newPrice  ? item?.newPrice : item.price}/>
                     }) :
                     <EmptyCartAlert/>     
                 }

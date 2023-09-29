@@ -81,7 +81,7 @@ const Index = () => {
                             inStock={item?.inStock 
                             }
                             onRemove={() => handleRemoveFromWishlist(item._id)}
-                            whishedItem={true} _id={item?._id} title={item?.title} price={item?.price} images={[`${item?.img}`]} category={item?.category}/>
+                            whishedItem={true} _id={item?._id} title={item?.title} price={item?.newPrice ?item?.newPrice: item?.price} images={[`${item?.img}`]} category={item?.category}/>
                         })
                         :
                         <Typography className='center auto' sx={{textAlign:'center',mb:1,fontSize:'.8em',fontWeight:'400'}}>

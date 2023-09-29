@@ -5,9 +5,9 @@ function totalCal(cartItems: ICartItem[]) {
     let totalPrice = 0;
 
     for (const item of cartItems) {
-        if (item?._id && Number(item?.price)) {
+        if (item?._id && Number(item?.newPrice ?item?.newPrice :   item?.price)) {
 
-            totalPrice += item.qty * item.price;
+            totalPrice += item.qty * Number(item?.newPrice ?item?.newPrice :   item?.price);
         }
     }
     return totalPrice;
