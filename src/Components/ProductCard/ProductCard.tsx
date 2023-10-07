@@ -66,7 +66,7 @@ title: string,
             }}>
                 <img
                     src={images
-                    ? images[0]
+                    ? `${images[0]}-/resize/400x400/`
                     : ''}
                     alt="Prdouct image"
                     className="img contain"/>
