@@ -13,7 +13,7 @@ export const metadata = {
     description: `Shop at The Craft Room, where creativity becomes reality. Find all your arts and
      crafts supplies, including best Cricut products in Lebanon`,
     icons: {
-        icon: `https://ucarecdn.com/f21fe250-e19c-4fd7-b4e7-bf1b246a3640/favicon.jpeg`
+        icon: `https://ucarecdn.com/6d19bf1b-3741-43fd-b4fe-66f7f26772e2/craftnewlogo.webp`
     }
 }
 
