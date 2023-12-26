@@ -112,7 +112,7 @@ export default function Navbar() {
 }}>
     <img
         className='img'
-        src={`https://ucarecdn.com/6d19bf1b-3741-43fd-b4fe-66f7f26772e2/craftnewlogo.webp`}
+        src={`https://ucarecdn.com/9f0e31cb-bce5-49f5-96bf-40e579295a42/LOGO71.png`}
         alt="the craft room logo"/>
 </Box>
 </Link>
