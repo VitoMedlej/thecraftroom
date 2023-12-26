@@ -108,12 +108,15 @@ export default function Navbar() {
     mx: {
         sm: '1em'
     },
-    width:{xs:'90px',sm: '120px'}
+    py:1,
+    px:1,
+    width:{xs:'90px',sm: '100px'},
+    height:{xs:'90px',sm: '100px'}
 }}>
     <img
-        className='img'
+        className='img contain'
         src={`https://ucarecdn.com/9f0e31cb-bce5-49f5-96bf-40e579295a42/LOGO71.png`}
-        alt="the craft room logo"/>
+        alt="the craft room logo"/> 
 </Box>
 </Link>
 <NavButtom/>
