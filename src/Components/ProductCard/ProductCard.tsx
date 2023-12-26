@@ -127,7 +127,7 @@ title: string,
                     ${price}
                     </del>
                     {' '}
-                    <span style={{color:'red'}}>${newPrice}</span>
+                    <span style={{color:'red'}}>{' '}${ newPrice}</span>
                     
                      </Typography>
                      
