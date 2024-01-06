@@ -17,6 +17,7 @@ export async function GET(req : NextRequest, res : NextApiResponse) {
     const page = searchParams.get('page')
     const brand = searchParams.get('brand')
     
+    console.log('search: ', search);
 
     // const {page} = ctx?.searchParams;
     // const {type} = ctx?.searchParams;
@@ -41,7 +42,7 @@ export async function GET(req : NextRequest, res : NextApiResponse) {
         
         let filterByCate = !category || category === 'collection' || category === 'category' ? null : `${category}`.replace(/-/g, ' ').toLocaleLowerCase()
         let filterByType = !type || type === null || type == 'null'  ? null : decodeURIComponent(type).toLocaleLowerCase()
-        let filterBySearch = search && !search && search != 'null' && search != null && search?.length > 1; 
+        let filterBySearch = search  && search != 'null' && search != null && search?.length > 1; 
         
     const ProductsCollection = await client
         .db("CRAFT")

@@ -25,21 +25,22 @@ const Preloader2 = ({data,totalPages}:any) => {
     const {category} = useParams() 
     const searchParams = useSearchParams();
     const type =  searchParams.get('type')
+    const search =  searchParams.get('search')
     // const {type} = useSearchParams();
 
 
 
 
     const fetchData = async (val:number) => {
-    const url =  `/api/get-cate?category=${category ? category : 'collection'}&page=${Number(val - 1) || 0}&type=${type ? encodeURIComponent(type) : null}`  ;
+    const url =  `/api/get-cate?category=${category ? category : 'collection'}&page=${Number(val - 1) || 0}&search=${search ? search : null}&type=${type ? encodeURIComponent(type) : null}`  ;
     const req = await fetch(`${server}${url}`,{cache:'no-store', next: { revalidate: 0 }})
     const res = await req.json()
     console.log('res: ', res);
         
             setProducts(res?.data?.products ? res?.data?.products : [])
-            console.log('totalPages: ', totalPages);
+            // console.log('totalPages: ', totalPages);
             totalPages = res?.data?.totalPages;
-            console.log('totalPages2: ', totalPages);
+            // console.log('totalPages2: ', totalPages);
             if (window) {
                 window.scrollTo(0,0)
             }
