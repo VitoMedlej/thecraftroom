@@ -12,7 +12,8 @@ const Page = async(ctx : any) => {
     const {category} = ctx?.params
     const {type,brand,search} = ctx?.searchParams;
     console.log('search: ', search);
-    const req = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/get-cate?category=${category ? category : 'collection'}&type=${type ? encodeURIComponent(type) : null}&page=${0}&brand=${brand ? encodeURIComponent(brand) : null}&search=${search ? search : null}`,{cache:'no-store',next:{revalidate:0}})
+    const req = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/get-cate?category=${category ? category : 'collection'}&type=${type ? encodeURIComponent(type) : null}&page=${0}&brand=${brand ? encodeURIComponent(brand) : null}&search=${search ? search : null}`
+    ,{cache:'no-store',next:{revalidate:0}})
     const res = await req.json();    
 
     // const totalPages = 1;
