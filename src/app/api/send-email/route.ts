@@ -41,26 +41,26 @@ const transporter = nodemailer.createTransport({
   auth: {
     // TODO: replace `user` and `pass` values from <https://forwardemail.net>
     user: "vitto.medl@gmail.com",
-    // pass: "VITO55555",
+    pass: "VITO55555",
   },
 });
 export  async function GET(req: NextRequest, res: NextApiResponse) {
   // const order = req?.body.get('order')
   // const {order} = await req.json()
-  if (req.method === 'GET') {
+//   if (req.method === 'GET') {
    
-    // sendEmail();
-    const info = await transporter.sendMail({
-      from: '"Fred Foo 👻" <vitto.medl@gmail.com>', // sender address
-      to: "vitto.medl@gmail.com", // list of receivers
-      subject: "Hello ✔", // Subject line
-      text: "Hello world?", // plain text body
-      html: "<b>Hello world?</b>", // html body
-    });
+//     // sendEmail();
+//     const info = await transporter.sendMail({
+//       from: '"Fred Foo 👻" <vitto.medl@gmail.com>', // sender address
+//       to: "vitto.medl@gmail.com", // list of receivers
+//       subject: "Hello ✔", // Subject line
+//       text: "Hello world?", // plain text body
+//       html: "<b>Hello world?</b>", // html body
+//     });
   
-    console.log("Message sent: %s", info?.messageId);
-    return NextResponse.json({success:true});
-}
+//     console.log("Message sent: %s", info?.messageId);
+//     return NextResponse.json({success:true});
+// }
 return NextResponse.json({success:false});
 
 }
