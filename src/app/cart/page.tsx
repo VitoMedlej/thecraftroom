@@ -83,6 +83,7 @@ const Cart = () => {
          saveState('shping-list', state);
          setCartItems(state);
      }
+     
     const pathname = usePathname()
 
      const [lastPage, setLastPage] = useState('')
