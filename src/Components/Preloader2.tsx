@@ -11,8 +11,10 @@ import ProductCard from './ProductCard/ProductCard'
 
 const Preloader2 = ({data,totalPages}:any) => {
    
-    const [pageNB,setPageNB] = useState(1)
     const router = useRouter()
+    const searchParams = useSearchParams()
+    const page = searchParams.get('page')
+    const [pageNB,setPageNB] = useState(page ? Number(page) : 1)
     const [products,setProducts] = useState<any>()
     useEffect(() => {
       
@@ -23,7 +25,6 @@ const Preloader2 = ({data,totalPages}:any) => {
     }, [data])
     
     const {category} = useParams() 
-    const searchParams = useSearchParams();
     const type =  searchParams.get('type')
     const search =  searchParams.get('search')
     // const {type} = useSearchParams();
@@ -93,7 +94,7 @@ No products found, try a different category...
 </Typography>}
     </Box>
     <Pagination
-    page={pageNB}
+    page={Number(page) ? Number(page) : 1}
         onChange={(e, val) => {
             console.log('val: pagi', val);
             setPageNB(val)
