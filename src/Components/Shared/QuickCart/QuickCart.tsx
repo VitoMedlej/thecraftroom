@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
 import {IconButton, Typography} from '@mui/material';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { ICartItem } from '@/Types/Types';
 import { useCartContext } from '@/context/Contexts';
 import { loadState, saveState } from '@/Utils/LocalstorageFn';
@@ -24,7 +24,7 @@ export default function TemporaryDrawer() {
                 setCartItems(localCart)
         }
     },[cartOpen])
-
+    const pathname = usePathname()
     const toggleDrawer = (open : boolean) => (event : React.KeyboardEvent | React.MouseEvent) => {
         if (event.type === 'keydown' && ((event as React.KeyboardEvent).key === 'Tab' || (event as React.KeyboardEvent).key === 'Shift')) {
             return;
@@ -121,6 +121,7 @@ export default function TemporaryDrawer() {
                         onClick={()=>{setCartOpen(false),
                         
                             // router.push('/collection/products')
+                            pathname?.includes('/products') ? null :
                             router.back()
                         }}>
                         Continue Shopping
