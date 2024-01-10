@@ -11,7 +11,7 @@ import ProductCard from './ProductCard/ProductCard'
 
 const Preloader2 = ({data,totalPages}:any) => {
    
-    // const [pageNB,setPageNB] = useState(0)
+    const [pageNB,setPageNB] = useState(1)
     const router = useRouter()
     const [products,setProducts] = useState<any>()
     useEffect(() => {
@@ -32,7 +32,10 @@ const Preloader2 = ({data,totalPages}:any) => {
 
 
     const fetchData = async (val:number) => {
+        router.push(`/${category || 'collection'}/products?page=${Number(val) }`)
+      
     const url =  `/api/get-cate?category=${category ? category : 'collection'}&page=${Number(val - 1) || 0}&search=${search ? search : null}&type=${type ? encodeURIComponent(type) : null}`  ;
+    // const url = '/abc'
     const req = await fetch(`${server}${url}`,{cache:'no-store', next: { revalidate: 0 }})
     const res = await req.json()
     console.log('res: ', res);
@@ -90,7 +93,10 @@ No products found, try a different category...
 </Typography>}
     </Box>
     <Pagination
+    page={pageNB}
         onChange={(e, val) => {
+            console.log('val: pagi', val);
+            setPageNB(val)
             fetchData(val)
     }}
         sx={{
