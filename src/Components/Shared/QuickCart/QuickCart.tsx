@@ -120,8 +120,8 @@ export default function TemporaryDrawer() {
                             ':hover':{background:'#1a4671',color:'white'}}}
                         onClick={()=>{setCartOpen(false),
                         
-                            // router.push('/collection/products')
-                            pathname?.includes('/products') ? null :
+                            pathname?.includes('/products') ?
+                            router.push('/collection/products') :
                             router.back()
                         }}>
                         Continue Shopping

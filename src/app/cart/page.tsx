@@ -4,7 +4,7 @@ import {Box, Divider, Typography} from '@mui/material'
 import Link from 'next/link'
 import {AiOutlineShoppingCart} from 'react-icons/ai';
 
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import Btn from '@/Components/Btn/Btn';
 import CartProduct from '@/Components/Shared/CartProduct/CartProduct';
 import { ICartItem } from '@/Types/Types';
@@ -63,6 +63,7 @@ const EmptyCartAlert = () => {
 const Cart = () => {
     const [cartItems,setCartItems] = useState<ICartItem[]>([])
     const total= totalCal(cartItems) || 0; 
+    const router = useRouter()
     let localCart : ICartItem[] = loadState('shping-list') || []
     useEffect(() => {
         if (localCart) {
@@ -82,6 +83,22 @@ const Cart = () => {
          saveState('shping-list', state);
          setCartItems(state);
      }
+    const pathname = usePathname()
+
+     const [lastPage, setLastPage] = useState('')
+
+     // Update lastPage whenever the page changes
+     useEffect(() => {
+       if (pathname.includes('/products')) {
+         setLastPage(pathname)
+       }
+     }, [pathname])
+   
+     const continueShopping = () => {
+       router.push(lastPage)
+     }
+   
+
     return (
         <Box sx={{
             pb: 5,
@@ -161,12 +178,12 @@ const Cart = () => {
                     sx={{width:'100%',borderRadius:25,mt:2.5}}>Checkout Now</Btn>
                     </Link>
 
-                    <Link href='/collection/products' className='decor-none'>
+                    {/* <Link href='/collection/products' className='decor-none'> */}
 
                     <Btn
-                    
+                        onClick={continueShopping}
                      sx={{mx:0,':hover':{background:'white',color:'black'},background:'transparent',borderRadius:'25px',width:'100%',mt:1}}>Continue Shopping</Btn>
-                    </Link>
+                    {/* </Link> */}
                 
                 </Box>
                 
