@@ -86,17 +86,18 @@ const Cart = () => {
      
     const pathname = usePathname()
 
-     const [lastPage, setLastPage] = useState('')
+     const [lastPage, setLastPage] = useState('/collection/products')
 
      // Update lastPage whenever the page changes
      useEffect(() => {
-       if (pathname.includes('/products')) {
+       if (pathname?.includes('/products')) {
          setLastPage(pathname)
        }
      }, [pathname])
    
      const continueShopping = () => {
-       router.push(lastPage)
+    //    router.push(lastPage)
+       router.push('/collection/products')
      }
    
 
