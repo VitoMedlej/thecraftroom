@@ -35,32 +35,106 @@ import { type NextRequest } from 'next/server'
 
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.forwardemail.net",
-  port: 465,
-  secure: true,
+  host: "smtp.mailersend.net",
+  port: 587,
+  secure: false,
   auth: {
     // TODO: replace `user` and `pass` values from <https://forwardemail.net>
-    user: "vitto.medl@gmail.com",
-    pass: "VITO55555",
+    user: "MS_2Jz0CV@thecraftroom-lb.com",
+    pass: "N2YPj1mvCdtTk7Wr",
   },
 });
 export  async function GET(req: NextRequest, res: NextApiResponse) {
   // const order = req?.body.get('order')
   // const {order} = await req.json()
-//   if (req.method === 'GET') {
-   
-//     // sendEmail();
-//     const info = await transporter.sendMail({
-//       from: '"Fred Foo 👻" <vitto.medl@gmail.com>', // sender address
-//       to: "vitto.medl@gmail.com", // list of receivers
-//       subject: "Hello ✔", // Subject line
-//       text: "Hello world?", // plain text body
-//       html: "<b>Hello world?</b>", // html body
-//     });
-  
-//     console.log("Message sent: %s", info?.messageId);
-//     return NextResponse.json({success:true});
-// }
+  if (req.method === 'GET') {
+    try {
+
+        
+        // sendEmail();
+        const info = await transporter.sendMail({
+            from: '"Tester" <sales@thecraftroom-lb.com>', // sender address
+            to: "sales@thecraftroom-lb.com", // list of receivers
+            subject: "Order Placement Email Testing", // Subject line
+            text: "Order Placement Email Testing", // plain text body
+            html: `<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Your Order Confirmation</title>
+                <style>
+                    body {
+                        font-family: 'Arial', sans-serif;
+                        background-color: #f4f4f4;
+                        margin: 0;
+                        padding: 0;
+                        text-align: center;
+                    }
+            
+                    .container {
+                        max-width: 600px;
+                        margin: 20px auto;
+                        background-color: #fff;
+                        padding: 30px;
+                        border-radius: 10px;
+                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                    }
+            
+                    .icon {
+                        font-size: 40px;
+                        color: #28a745;
+                        margin-bottom: 20px;
+                    }
+            
+                    h1 {
+                        color: #333;
+                    }
+            
+                    p {
+                        color: #666;
+                        font-size: 16px;
+                        margin-top: 10px;
+                    }
+            
+                    .btn {
+                        display: inline-block;
+                        padding: 10px 20px;
+                        margin-top: 20px;
+                        background-color: #28a745;
+                        color: #fff;
+                        text-decoration: none;
+                        border-radius: 5px;
+                        transition: background-color 0.3s ease;
+                    }
+            
+                    .btn:hover {
+                        background-color: #218838;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <div class="icon">&#10003;</div>
+                    <h1>Your Order Has Been Placed</h1>
+                    <p>Thank you for shopping with us! Your order is confirmed and will be processed shortly.</p>
+                    <a href="#" class="btn">Track Your Order</a>
+                </div>
+            </body>
+            </html>
+            `, // html body
+        });
+        
+        console.log("Message sent: %s", info?.messageId);
+        return NextResponse.json({success:true});
+    }
+    catch(e){
+        console.log('e: ', e);
+
+        return NextResponse.json({success:false});
+    }    
+    
+}
 return NextResponse.json({success:false});
 
 }
