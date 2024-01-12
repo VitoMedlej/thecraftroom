@@ -106,7 +106,7 @@ const Index = () => {
              <QuantityPicker 
                     onChange={(e:number)=>{setSelectedQuantity(e)}}
                     
-                    min={1} max={10} value={selectedQuantity}/>
+                    min={1} max={3} value={selectedQuantity}/>
               </Box>
 
        <Btn 

@@ -144,7 +144,7 @@ const CartProduct = ({onChange,_id,price,category,title,remove,qty,img,selectedC
                     <QuantityPicker 
                     onChange={(e:number)=>{incrementQty(_id,e),onChange && onChange()}}
                     
-                    min={1} max={10} value={qty > 10 ? 10 : qty}/>
+                    min={1} max={3} value={qty > 3 ? 3 : qty}/>
                 </Box>
             </Box>
         </Box>

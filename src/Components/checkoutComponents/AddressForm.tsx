@@ -109,6 +109,20 @@ export default function AddressForm({info,setInfo,handleChange}:{handleChange:an
           />
           
         </Grid>
+      <Grid item xs={12} sm={ 12}>
+      <FormControlLabel
+        value={info.checkbox}
+        onChange={handleChange}
+        name='checkbox'
+      required control={<Checkbox  />} label="I agree to the Terms and conditions." />
+      </Grid>
+      <Grid item xs={12} sm={ 12}>
+      <FormControlLabel
+        value={info.checkbox2}
+        onChange={handleChange}
+        name='checkbox2'
+      required control={<Checkbox  />} label="I agree to receive emails understand that I can unsubscribe at any time by clicking the link in the email." />
+      </Grid>
      
 
         

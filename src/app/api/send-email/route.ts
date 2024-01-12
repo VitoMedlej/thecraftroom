@@ -35,15 +35,17 @@ import { type NextRequest } from 'next/server'
 
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.mailersend.net",
+  host: "smtp-relay.brevo.com",
   port: 587,
   secure: false,
   auth: {
     // TODO: replace `user` and `pass` values from <https://forwardemail.net>
-    user: "MS_2Jz0CV@thecraftroom-lb.com",
-    pass: "N2YPj1mvCdtTk7Wr",
+    user: "contact@onbeirut.com",
+    pass: "rbFIAhVPsNtJSQRH",
   },
 });
+
+
 export  async function GET(req: NextRequest, res: NextApiResponse) {
   // const order = req?.body.get('order')
   // const {order} = await req.json()
@@ -53,8 +55,8 @@ export  async function GET(req: NextRequest, res: NextApiResponse) {
         
         // sendEmail();
         const info = await transporter.sendMail({
-            from: '"Tester" <sales@thecraftroom-lb.com>', // sender address
-            to: "sales@thecraftroom-lb.com", // list of receivers
+            from: '"The Craft Room" <sales@thecraftroom-lb.com>', // sender address
+            to: "vito.medlej@gmail.com", // list of receivers
             subject: "Order Placement Email Testing", // Subject line
             text: "Order Placement Email Testing", // plain text body
             html: `<!DOCTYPE html>

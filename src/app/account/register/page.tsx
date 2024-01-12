@@ -33,6 +33,8 @@ const theme = createTheme();
 const LoginForm = () => {
     const [showPassword,
         setShowPassword] = useState(false);
+        const [checkbox, setCheckbox] = useState(false); 
+const [checkbox2, setCheckbox2] = useState(false); 
     const [isLoading,
         setLoading] = useState(false);
 const [error, setError] = useState(''); 
@@ -224,7 +226,7 @@ const router= useRouter()
                             label="Remember me"/>
                         <Button
     className='bg'
-disabled={isLoading}
+disabled={isLoading || !checkbox || !checkbox2}
                             type="submit"
                             fullWidth
                             variant="contained"
@@ -242,7 +244,21 @@ disabled={isLoading}
                         }}>
                             Sign In
                         </Button>
+                        <Grid item xs={12} sm={ 12}>
+        <FormControlLabel
+         value={checkbox}
+         onChange={(e : any)=>setCheckbox(e?.target?.checked)}
 
+         name='checkbox'
+        required control={<Checkbox  />} label="I agree to the Terms and conditions." />
+        </Grid>
+        <Grid item xs={12} sm={ 12}>
+        <FormControlLabel
+         value={checkbox2}
+         onChange={(e : any)=>setCheckbox2(e?.target?.checked)}
+         name='checkbox2'
+        required control={<Checkbox  />} label="I agree to receive emails understand that I can unsubscribe at any time by clicking the link in the email." />
+        </Grid>
                         <Grid container>
 
                             <Grid className='link' item>
