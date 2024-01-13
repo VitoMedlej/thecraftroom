@@ -119,6 +119,17 @@ const transporter = nodemailer.createTransport({
                     width: 100px;
                     height: 100px;
                 }
+                footer {
+                    background-color: #333;
+                    color: white;
+                    padding: 20px;
+                    text-align: center;
+                  }
+              
+                  footer a {
+                    color: white;
+                    text-decoration: none;
+                  }
             </style>
         </head>
         <body>
@@ -173,7 +184,9 @@ const transporter = nodemailer.createTransport({
         <footer>
         <br />
         <p><a href="https://thecraftroom-lb.com/unsubscribe">unsubscribe</a></p>
-        </footer>
+        <p>Contact us at: <a href="mailto:sales@thecraftroom-lb.com">sales@thecraftroom-lb.com</a></p>
+        <p>Whatsapp: +961 03874743</p>
+      </footer>
         </html> `;
 
         // Send the email

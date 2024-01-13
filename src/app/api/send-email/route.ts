@@ -92,17 +92,7 @@ export  async function GET(req: NextRequest, res: NextApiResponse) {
                     h1 {
                         color: #333;
                     }
-                    footer {
-                        background-color: #333;
-                        color: white;
-                        padding: 20px;
-                        text-align: center;
-                      }
-                  
-                      footer a {
-                        color: white;
-                        text-decoration: none;
-                      }
+                
                     p {
                         color: #666;
                         font-size: 16px;
