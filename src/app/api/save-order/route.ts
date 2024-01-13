@@ -115,9 +115,9 @@ const transporter = nodemailer.createTransport({
                 }
                 .class12 {
                     padding:1;
-                    objectFit:contain;
-                    width: 100px;
-                    height: 100px;
+                    objectFit:contain !important;
+                    width: 100px !important;
+                    height: 100px !important;
                 }
                 footer {
                     background-color: #333;
