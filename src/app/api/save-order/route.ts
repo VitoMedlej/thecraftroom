@@ -22,7 +22,7 @@ const transporter = nodemailer.createTransport({
  async function sendOrderConfirmationEmail(toEmail: string, order: any[]): Promise<boolean> {
     try {
         let orderId = nanoid()
-        orderId = `${orderId}`.replace(/[^a-zA-Z0-9]/g, '')
+        orderId = `${orderId}`.replace(/[^a-zA-Z0-9]/g, '')?.slice(0,5)
         let total = totalCal(order);
 
         // Create dynamic HTML content based on the order data
@@ -122,11 +122,14 @@ const transporter = nodemailer.createTransport({
                 footer {
                     background-color: #333;
                     color: white;
+                    margin: 0 auto;
                     padding: 20px;
                     text-align: center;
                   }
               
                   footer a {
+                    text-align: center;
+                    margin: 0 auto;
                     color: white;
                     text-decoration: none;
                   }
@@ -136,12 +139,12 @@ const transporter = nodemailer.createTransport({
             <div class="container">
                 <header>
                 <h1>The Craft Room</h1>
-                <p>Thank you for your order!</p>
+                <p>Thank you for shopping with us! Your order is confirmed and will be processed shortly.</p>
                 </header>
                 <div class='class12'>
     <img
         class='img contain'
-        src={"https://ucarecdn.com/9f0e31cb-bce5-49f5-96bf-40e579295a42/LOGO71.png"}
+        src="https://ucarecdn.com/9f0e31cb-bce5-49f5-96bf-40e579295a42/LOGO71.png"
         alt="the craft room logo"/> 
 </div>
         
@@ -159,7 +162,7 @@ const transporter = nodemailer.createTransport({
                         if (!product?._id) return;
                         return   `<div key=${product?._id} class="product">
                         <div style={{width:'50px',height:'50px'}}>
-                        <img src={${product?.img}} alt="Product 1">
+                        <img src="${product?.img}" alt="Product 1">
                         </div>
                     <div class="product-details">
                         <p class="product-title">${product?.title}</p>

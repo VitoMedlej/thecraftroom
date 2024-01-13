@@ -119,7 +119,7 @@ export  async function GET(req: NextRequest, res: NextApiResponse) {
                 <div class="container">
                     <div class="icon">&#10003;</div>
                     <h1>Your Order Has Been Placed</h1>
-                    <p>Thank you for shopping with us! Your order is confirmed and will be processed shortly.</p>
+                    <p></p>
                     <a href="#" class="btn">Track Your Order</a>
                 </div>
             </body>
