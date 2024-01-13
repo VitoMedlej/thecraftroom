@@ -6,6 +6,7 @@ import { type NextRequest } from 'next/server'
 
 import nodemailer from 'nodemailer';
 import { nanoid } from 'nanoid'
+import totalCal from '@/Utils/totalCal';
 
 const transporter = nodemailer.createTransport({
     host: "mail.smtp2go.com",
@@ -21,16 +22,9 @@ const transporter = nodemailer.createTransport({
  async function sendOrderConfirmationEmail(toEmail: string, order: any[]): Promise<boolean> {
     try {
         let orderId = nanoid()
-        let total = 0;
+        orderId = `${orderId}`.replace(/[^a-zA-Z0-9]/g, '')
+        let total = totalCal(order);
 
-     order.forEach(item => {
-     const itemPrice = parseFloat(item.price);
-
-     // Check if itemPrice is a valid number
- if (!isNaN(itemPrice)) {
-     total += itemPrice;
- }
- })
         // Create dynamic HTML content based on the order data
         const htmlContent = `
         <!DOCTYPE html>
@@ -130,15 +124,15 @@ const transporter = nodemailer.createTransport({
         <body>
             <div class="container">
                 <header>
+                <h1>The Craft Room</h1>
+                <p>Thank you for your order!</p>
+                </header>
                 <div class='class12'>
     <img
         class='img contain'
         src={"https://ucarecdn.com/9f0e31cb-bce5-49f5-96bf-40e579295a42/LOGO71.png"}
         alt="the craft room logo"/> 
 </div>
-                    <h1>The Craft Room</h1>
-                    <p>Thank you for your order!</p>
-                </header>
         
                 <div class="buttons">
                     <a href="https://wa.me/+96103874743" class="button">Reach Us</a>
