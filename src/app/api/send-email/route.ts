@@ -92,7 +92,17 @@ export  async function GET(req: NextRequest, res: NextApiResponse) {
                     h1 {
                         color: #333;
                     }
-            
+                    footer {
+                        background-color: #333;
+                        color: white;
+                        padding: 20px;
+                        text-align: center;
+                      }
+                  
+                      footer a {
+                        color: white;
+                        text-decoration: none;
+                      }
                     p {
                         color: #666;
                         font-size: 16px;
@@ -123,6 +133,10 @@ export  async function GET(req: NextRequest, res: NextApiResponse) {
                     <a href="#" class="btn">Track Your Order</a>
                 </div>
             </body>
+            <footer>
+            <p>Contact us at: <a href="mailto:sales@thecraftroom-lb.com">sales@thecraftroom-lb.com</a></p>
+            <p>Whatsapp: +961 03874743</p>
+          </footer>
             </html>
             `, // html body
         });
