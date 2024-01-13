@@ -9,7 +9,29 @@ import { useState } from 'react';
 
 export default function AddressForm({info,setInfo,handleChange}:{handleChange:any,setInfo:any,info:any}) {
   const [data,setData]= useState(null)
-  
+  const [localUser,setLocalUser] = useState<{name?:string,email?:string} | null>(null)
+
+  const fetchUserAndList = async () => {
+    const user = localStorage.getItem('24j1i2cj4io-dadxzazd213')
+    if (user) {
+           let parsedUser = JSON.parse(user)
+           if (!parsedUser) {return}
+           setLocalUser(parsedUser)
+           if (parsedUser?.email && parsedUser?.name && parsedUser?.phone && parsedUser?.address1) {
+              setInfo({...info, email: parsedUser?.email, 
+                
+                city: parsedUser?.city,
+                phone: parsedUser?.phone,
+                address1: parsedUser?.address1,
+                address2: parsedUser?.address2,
+                firstName: parsedUser?.name?.split(" ")[0], lastName: parsedUser?.name?.split(" ")[1] ? parsedUser?.name?.split(" ")[1] : parsedUser?.name})
+           }
+    }
+}
+React.useEffect(()=>{
+  fetchUserAndList()
+
+},[])
   return (
           <Box component='form' >
       <Typography variant="h6" gutterBottom>

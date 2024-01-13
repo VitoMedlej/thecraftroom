@@ -60,6 +60,7 @@ export default function Checkout() {
 
     const handleNext = () => {
       if (info?.checkbox2 && info?.checkbox && info && info.email && info.firstName && info.lastName && info.address1 && info.phone) {
+        localStorage.setItem('24j1i2cj4io-dadxzazd213',JSON.stringify({...info, name : `${info.firstName} ${info.lastName}`}))
         saveState('order-bag',info)
         setActiveStep(activeStep + 1);
       

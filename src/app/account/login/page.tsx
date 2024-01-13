@@ -191,10 +191,25 @@ const [checkbox2, setCheckbox2] = useState(false);
                             </InputAdornment>}
                                 label="Password"/>
                         </FormControl>
-
+                                    
                         <FormControlLabel
                             control={< Checkbox value = "remember" color = "primary" />}
                             label="Remember me"/>
+                                <Grid item xs={12} sm={ 12}>
+        <FormControlLabel
+         value={checkbox}
+         onChange={(e : any)=>setCheckbox(e?.target?.checked)}
+
+         name='checkbox'
+        required control={<Checkbox  />} label="I agree to the Terms and conditions." />
+        </Grid>
+        <Grid item xs={12} sm={ 12}>
+        <FormControlLabel
+         value={checkbox2}
+         onChange={(e : any)=>setCheckbox2(e?.target?.checked)}
+         name='checkbox2'
+        required control={<Checkbox  />} label="I agree to receive emails understand that I can unsubscribe at any time by clicking the link in the email." />
+        </Grid>
                         <Button
     className='bg'
     disabled={isLoading || !checkbox || !checkbox2}
@@ -216,21 +231,7 @@ const [checkbox2, setCheckbox2] = useState(false);
                         }}>
                             Sign In
                         </Button>
-                        <Grid item xs={12} sm={ 12}>
-        <FormControlLabel
-         value={checkbox}
-         onChange={(e : any)=>setCheckbox(e?.target?.checked)}
-
-         name='checkbox'
-        required control={<Checkbox  />} label="I agree to the Terms and conditions." />
-        </Grid>
-        <Grid item xs={12} sm={ 12}>
-        <FormControlLabel
-         value={checkbox2}
-         onChange={(e : any)=>setCheckbox2(e?.target?.checked)}
-         name='checkbox2'
-        required control={<Checkbox  />} label="I agree to receive emails understand that I can unsubscribe at any time by clicking the link in the email." />
-        </Grid>
+                    
                         <Grid container>
 
                             <Grid className='link' item>
