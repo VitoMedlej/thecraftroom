@@ -6,7 +6,7 @@ import {AiOutlineShoppingCart} from 'react-icons/ai';
 
 import { usePathname, useRouter } from 'next/navigation'
 import Btn from '@/Components/Btn/Btn';
-import CartProduct from '@/Components/Shared/CartProduct/CartProduct';
+import CartProduct from '@/Components/Shared/QuantityPicker/CartProduct';
 import { ICartItem } from '@/Types/Types';
 import { loadState, saveState } from '@/Utils/LocalstorageFn';
 import totalCal from '@/Utils/totalCal';

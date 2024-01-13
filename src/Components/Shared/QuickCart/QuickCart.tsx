@@ -9,8 +9,8 @@ import { ICartItem } from '@/Types/Types';
 import { useCartContext } from '@/context/Contexts';
 import { loadState, saveState } from '@/Utils/LocalstorageFn';
 import Btn from '@/Components/Btn/Btn';
-import CartProduct from '../CartProduct/CartProduct';
 import {GrFormClose} from 'react-icons/gr'
+import CartProduct from '../QuantityPicker/CartProduct';
 
 export default function TemporaryDrawer() {
     const router = useRouter()
