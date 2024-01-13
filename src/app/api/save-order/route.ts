@@ -138,15 +138,16 @@ const transporter = nodemailer.createTransport({
         <body>
             <div class="container">
                 <header>
-                <h1>The Craft Room</h1>
-                <p>Thank you for shopping with us! Your order is confirmed and will be processed shortly.</p>
-                </header>
                 <div class='class12'>
     <img
+    style="width:100px;height:100px"
         class='img contain'
         src="https://ucarecdn.com/9f0e31cb-bce5-49f5-96bf-40e579295a42/LOGO71.png"
         alt="the craft room logo"/> 
 </div>
+                <h1>The Craft Room</h1>
+                <p>Thank you for shopping with us! Your order is confirmed and will be processed shortly.</p>
+                </header>
         
                 <div class="buttons">
                     <a href="https://wa.me/+96103874743" class="button">Reach Us</a>
