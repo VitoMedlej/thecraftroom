@@ -113,6 +113,12 @@ const transporter = nodemailer.createTransport({
                 .product-price {
                     color: #333;
                 }
+                .centered {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin:0 auto;
+                }
                 .class12 {
                     padding:1;
                     objectFit:contain !important;
@@ -187,9 +193,11 @@ const transporter = nodemailer.createTransport({
         </body>
         <footer>
         <br />
+        <div className='centered>
         <p><a href="https://thecraftroom-lb.com/unsubscribe">unsubscribe</a></p>
-        <p>Contact us at: <a href="mailto:sales@thecraftroom-lb.com">sales@thecraftroom-lb.com</a></p>
-        <p>Whatsapp: +961 03874743</p>
+        <p><a href="mailto:sales@thecraftroom-lb.com">sales@thecraftroom-lb.com</a></p>
+        <p>+961 03874743</p>
+        </div>
       </footer>
         </html> `;
 
