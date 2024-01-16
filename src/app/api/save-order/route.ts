@@ -19,10 +19,10 @@ const transporter = nodemailer.createTransport({
 });
 
 
- async function sendOrderConfirmationEmail(toEmail: string, order: any[]): Promise<boolean> {
+ async function sendOrderConfirmationEmail(orderId: string, toEmail: string, order: any[]): Promise<boolean> {
     try {
-        let orderId = nanoid()
-        orderId = `${orderId}`.replace(/[^a-zA-Z0-9]/g, '')?.slice(0,5)
+        // let orderId = nanoid()
+        // orderId = `${orderId}`.replace(/[^a-zA-Z0-9]/g, '')?.slice(0,6)?.toUpperCase()
         let total = totalCal(order);
 
         // Create dynamic HTML content based on the order data
@@ -220,15 +220,17 @@ const transporter = nodemailer.createTransport({
 export  async function POST(req: NextRequest, res: NextApiResponse) {
   // const order = req?.body.get('order')
   const {order} = await req.json()
+  let orderId = nanoid()
+        orderId = `${orderId}`.replace(/[^a-zA-Z0-9]/g, '')?.slice(0,6)?.toUpperCase()
   console.log('order: ', order);
   
   if (req.method === 'POST') {
     // Process a POST request
     if (!order || !order?.info?.email) return NextResponse.json({success:false})
-       const insertReq = await client.db("CRAFT").collection("Orders").insertOne(order);
+       const insertReq = await client.db("CRAFT").collection("Orders").insertOne({...order,orderID: `${orderId}`});
        if (insertReq.acknowledged ) {         
         // if (true ) {         
-        const emailStatus = await sendOrderConfirmationEmail(`${order?.info?.email}`,order?.products)
+        const emailStatus = await sendOrderConfirmationEmail(orderId,`${order?.info?.email}`,order?.products)
         console.log('emailStatus: ', emailStatus);
          return NextResponse.json({success:true});
         }
