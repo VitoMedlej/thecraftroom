@@ -193,7 +193,7 @@ const transporter = nodemailer.createTransport({
         </body>
         <footer>
         <br />
-        <div className='centered>
+        <div className='centered'>
         <p><a href="https://thecraftroom-lb.com/unsubscribe">unsubscribe</a></p>
         <p><a href="mailto:sales@thecraftroom-lb.com">sales@thecraftroom-lb.com</a></p>
         <p>+961 03874743</p>
