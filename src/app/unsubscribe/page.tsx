@@ -1,10 +1,10 @@
 "use client"
-import { Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import React from 'react'
 
 const Index = () => {
   return (
-    <div>
+    <Box sx={{my:6,mx:'auto'}}>
         <Typography sx={{fontSize:'2em'}}>
 
         You have successfully unsubscribed from our emails. We’re sorry to see you go.
@@ -14,7 +14,7 @@ const Index = () => {
 
 Thank you for your time, and we hope to see you again.
 </Typography>
-    </div>
+    </Box>
   )
 }
 
