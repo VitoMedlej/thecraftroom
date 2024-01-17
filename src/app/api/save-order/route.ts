@@ -228,6 +228,7 @@ export  async function POST(req: NextRequest, res: NextApiResponse) {
     // Process a POST request
     if (!order || !order?.info?.email) return NextResponse.json({success:false})
        const insertReq = await client.db("CRAFT").collection("Orders").insertOne({...order,orderID: `${orderId}`});
+       const insertReqBACKUP = await client.db("CRAFT").collection("OrdersBACKUP").insertOne({...order,orderID: `${orderId}`});
        if (insertReq.acknowledged ) {         
         // if (true ) {         
         const emailStatus = await sendOrderConfirmationEmail(orderId,`${order?.info?.email}`,order?.products)
