@@ -7,7 +7,8 @@ import { server } from "@/Utils/Server"
 // import { useEffect, useState } from "react"
 async function fetchData() {
   try {
-    const req = await fetch(`https://www.thecraftroom-lb.com/api/get-data`,{ cache: 'no-store' ,next:{revalidate:0}});
+    // const req = await fetch(`https://www.thecraftroom-lb.com/api/get-data`,{ cache: 'no-store' ,next:{revalidate:0}});
+    const req = await fetch(`https://www.thecraftroom-lb.com/api/get-data`);
     let res = await req.json();
     if (res) return res
     // use the response 'res' as needed
