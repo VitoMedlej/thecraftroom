@@ -19,7 +19,7 @@ const FAQs = [
   },
   {
     "Q": "3. What are your shipping costs and terms?",
-    "A": "Shipping is FREE! for all orders within Lebanon over the value of $45, for all orders under $45, shipping is $3."
+    "A": "Shipping is FREE! for all orders within Lebanon over the value of $60, for all orders under $60, shipping is $3."
   },
   {
     "Q": "4. What are your minimums?",
@@ -27,7 +27,7 @@ const FAQs = [
   },
   {
     "Q": "6. Pricing",
-    "A": "All prices are in US Dollars* and are inclusive of VAT and are subject to change without prior notice.\n\nShipping is Free for all orders over $45 within Lebanon, and is only $3 for orders under $45 regardless of size. At The Craft Room we aim to keep our prices as low as we can and pass all savings onto our customers.\n\nSale items may return to pre-sale prices after the sale has finished. Once again, the correct price will always be the one listed when you add the item to the cart."
+    "A": "All prices are in US Dollars* and are inclusive of VAT and are subject to change without prior notice.\n\nShipping is Free for all orders over $60 within Lebanon, and is only $3 for orders under $60 regardless of size. At The Craft Room we aim to keep our prices as low as we can and pass all savings onto our customers.\n\nSale items may return to pre-sale prices after the sale has finished. Once again, the correct price will always be the one listed when you add the item to the cart."
   },
   {
     "Q": "7. Do you ship internationally?",

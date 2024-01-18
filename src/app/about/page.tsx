@@ -13,7 +13,7 @@ const text = [
     Great value and awesome prices
     Great Lebanese customer service and next business day postage
     The widest range of the newest products soonest
-    Free delivery in Lebanon for orders over $45`,
+    Free delivery in Lebanon for orders over $60`,
 ]
 const Index = () => {
   return (
