@@ -29,6 +29,7 @@ export default function TemporaryDrawer({cates}:{cates:string[] | undefined}) {
            setLocalUser(parsedUser)
     }
 }
+
 useEffect(()=>{
   fetchUserAndList()
 
@@ -125,10 +126,17 @@ router.push(`/materials/products`)}}
       </ListItemButton>
 </ListItem>
 
-{[`Adhesive Vinyls`,
+{[
+  
+  `Craft Adhesive Vinyls`, 
+  `Specialty Adhesive Vinyls`,
+  `Transfer Tape`,
+  `Adhesive Vinyls`,
 `Heat Transfer Vinyls`,
 `Papers and Cards`,
-`Other Materials`].map(i=>{   return  <ListItem sx={{padding:0,width:'100%'}}
+`Other Materials`
+
+].map(i=>{   return  <ListItem sx={{padding:0,width:'100%'}}
 
   onClick={()=>
     {setOpen(false);
