@@ -14,6 +14,8 @@ const Preloader2 = ({data,totalPages}:any) => {
     const router = useRouter()
     const searchParams = useSearchParams()
     const page = searchParams.get('page')
+    const type =  searchParams.get('type')
+    const search =  searchParams.get('search')
     const [pageNB,setPageNB] = useState(page ? Number(page) : 1)
     const [products,setProducts] = useState<any>()
     useEffect(() => {
@@ -25,8 +27,6 @@ const Preloader2 = ({data,totalPages}:any) => {
     }, [data])
     
     const {category} = useParams() 
-    const type =  searchParams.get('type')
-    const search =  searchParams.get('search')
     // const type =  searchParams.get('type')
     // const {type} = useSearchParams();
 
@@ -36,7 +36,7 @@ const Preloader2 = ({data,totalPages}:any) => {
     const fetchData = async (val:number) => {
         router.push(`/${category || 'collection'}/products?type=${type ? encodeURIComponent(type) : null}&page=${Number(val) }`)
       
-    const url =  `/api/get-cate?category=${category ? category : 'collection'}&page=${Number(val - 1) || 0}&search=${search ? search : null}&type=${type ? encodeURIComponent(type) : null}`  ;
+    const url =  `/api/get-cate?category=${category ? category : 'collection'}&page=${`${Number(val - 1) || 0}`}&search=${search ? search : 'null'}&type=${type ? encodeURIComponent(type) : 'null'}`  ;
     // const url = '/abc'
     const req = await fetch(`${server}${url}`,{cache:'no-store', next: { revalidate: 0 }})
     const res = await req.json()
