@@ -27,13 +27,14 @@ const Preloader2 = ({data,totalPages}:any) => {
     const {category} = useParams() 
     const type =  searchParams.get('type')
     const search =  searchParams.get('search')
+    // const type =  searchParams.get('type')
     // const {type} = useSearchParams();
 
 
 
 
     const fetchData = async (val:number) => {
-        router.push(`/${category || 'collection'}/products?page=${Number(val) }`)
+        router.push(`/${category || 'collection'}/products?type=${type ? encodeURIComponent(type) : null}&page=${Number(val) }`)
       
     const url =  `/api/get-cate?category=${category ? category : 'collection'}&page=${Number(val - 1) || 0}&search=${search ? search : null}&type=${type ? encodeURIComponent(type) : null}`  ;
     // const url = '/abc'
