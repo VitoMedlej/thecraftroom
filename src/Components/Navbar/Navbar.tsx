@@ -86,7 +86,8 @@ export default function Navbar() {
                     height:'20px',
             py:.45}} >
             <Typography sx={{fontSize:{xs:'.7em',sm:'.8em'}}} className='center text-center'>
-            Free Delivery On Orders Over $60 In Lebanon 
+            {/* Free Delivery On Orders Over $60 In Lebanon  */}
+            Top Ranked Lebanese Craft Store.
             </Typography>
               
         </Box>

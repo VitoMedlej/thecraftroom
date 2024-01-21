@@ -131,7 +131,7 @@ router.push(`/materials/products`)}}
   `Craft Adhesive Vinyls`, 
   `Specialty Adhesive Vinyls`,
   `Transfer Tape`,
-  `Adhesive Vinyls`,
+  `Smart Adhesive Vinyls`,
 `Heat Transfer Vinyls`,
 `Papers and Cards`,
 `Other Materials`
