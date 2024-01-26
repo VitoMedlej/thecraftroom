@@ -182,8 +182,8 @@ const transporter = nodemailer.createTransport({
                         if (!product?._id) return '';
                         return `
                             <div class="product">
-                                <div style="width:50px;height:50px;">
-                                    <img src='${product?.img}' alt="Product 1">
+                                <div style="max-width:150px;max-height:150px;min-height:50px;">
+                                    <img src='${product?.img}' alt="Product Image">
                                 </div>
                                 <div class="product-details">
                                     <p class="product-title">${product?.title}</p>
