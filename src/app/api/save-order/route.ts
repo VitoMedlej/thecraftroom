@@ -96,7 +96,8 @@ const transporter = nodemailer.createTransport({
                 }
         
                 .product img {
-                    max-width: 100px;
+                    max-width: 150px;
+                    max-height: 150px;
                     margin-right: 10px;
                 }
         
@@ -201,7 +202,7 @@ const transporter = nodemailer.createTransport({
                 <p>
                 Delivery Fees:
                 <span>
-                  {' '} $4
+                   $4
                 </span>
                 </p>
 
