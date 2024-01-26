@@ -68,6 +68,8 @@ const transporter = nodemailer.createTransport({
                     margin: 0 auto;
                     color: white;
                     margin-top: 20px;
+                    width:max-content;
+                    
                 }
         
                 .button {
@@ -76,8 +78,9 @@ const transporter = nodemailer.createTransport({
                     text-decoration: none;
                     color: white !important;
                     margin-top:4px !important;
-                    width: 100%;
-                    max-width:100%;
+                    // width: 100%;
+                    width:max-content;
+                    // max-width:100%;
                     background-color: #007bff;
                     border-radius: 3px;
                 }
@@ -127,6 +130,9 @@ const transporter = nodemailer.createTransport({
                     width: 100px !important;
                     height: 100px !important;
                 }
+                .font1 {
+                    font-size:1.2em;
+                }
                 footer {
                     background-color: #333;
                     color: white;
@@ -140,6 +146,9 @@ const transporter = nodemailer.createTransport({
                     margin: 0 auto;
                     color: white;
                     text-decoration: none;
+                  }
+                  .col {
+                    flex-direction: column;
                   }
             </style>
         </head>
@@ -163,7 +172,11 @@ const transporter = nodemailer.createTransport({
                 </div>
         
                 <div class="order-id">
-                    <p>Order ID: ${orderId}</p>
+                    <p>Order ID:
+                    <strong>
+                    ${orderId}
+                    </strong>
+                    </p>
                 </div>
         
                 ${
@@ -183,7 +196,7 @@ const transporter = nodemailer.createTransport({
                 }
                 
                 <hr/>
-                ${Number(total) < 60 && `<div>
+                ${Number(total) < 60 ? `<div>
                 <p>
                 Delivery Fees:
                 </p>
@@ -191,8 +204,9 @@ const transporter = nodemailer.createTransport({
                   {' '} $4
                 </span>
 
-                </div>` }   
+                </div>`: '' }   
                 
+                <div class='font1'>
                 ${
                 `Order Total:
                 <strong>
@@ -200,16 +214,17 @@ const transporter = nodemailer.createTransport({
                 </strong>
                 `
                 }
+                </div>
         
                
             </div>
         </body>
         <footer>
         <br />
-        <div class='centered'>
-        <p><a href="https://thecraftroom-lb.com/unsubscribe">unsubscribe</a></p>
+        <div class='centered col'>
         <p><a href="mailto:sales@thecraftroom-lb.com">sales@thecraftroom-lb.com</a></p>
         <p>+961 03874743</p>
+        <p><a href="https://thecraftroom-lb.com/unsubscribe">unsubscribe</a></p>
         </div>
       </footer>
         </html> `;
