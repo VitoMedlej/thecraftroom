@@ -223,9 +223,9 @@ const transporter = nodemailer.createTransport({
         </body>
         <footer>
         <br />
-        <div class='centered col'>
+        <div style='text-align:center;align-items:center;margin:0 auto;'>
         <p><a href="mailto:sales@thecraftroom-lb.com">sales@thecraftroom-lb.com</a></p>
-        <p>+961 03874743</p>
+        <p style='padding-top:2px;padding-bottom:2px;'>+961 03874743</p>
         <p><a href="https://thecraftroom-lb.com/unsubscribe">unsubscribe</a></p>
         </div>
       </footer>
