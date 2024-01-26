@@ -75,9 +75,9 @@ const transporter = nodemailer.createTransport({
                     color: white !important;
                     margin-top:4px !important;
                     width: 100%;
+                    maxWidth:100%;
                     background-color: #007bff;
                     border-radius: 3px;
-                    margin-right: 10px;
                 }
         
                 .order-id {
@@ -180,10 +180,21 @@ const transporter = nodemailer.createTransport({
                     })
                 }
                 <hr/>
+                
+                ${Number(total) < 60 && `<div>
+                <p>
+                Delivery Fees:
+                </p>
+                <span>
+                  {' '} $4
+                </span>
+
+                </div>` }   
+                
                 ${
                 `Order Total:
                 <strong>
-                $${total}
+                $${Number(total) > 60 ? total : Number(total) + 4 }
                 </strong>
                 `
                 }
