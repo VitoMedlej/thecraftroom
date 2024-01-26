@@ -65,6 +65,8 @@ const transporter = nodemailer.createTransport({
         
                 .buttons {
                     text-align: center;
+                    margin: 0 auto;
+                    color: white;
                     margin-top: 20px;
                 }
         
@@ -75,7 +77,7 @@ const transporter = nodemailer.createTransport({
                     color: white !important;
                     margin-top:4px !important;
                     width: 100%;
-                    maxWidth:100%;
+                    max-width:100%;
                     background-color: #007bff;
                     border-radius: 3px;
                 }
@@ -167,7 +169,7 @@ const transporter = nodemailer.createTransport({
                 ${
                     order && order.map(product=>{
                         if (!product?._id) return;
-                        return   `<div key=${product?._id} class="product">
+                        return   `<div  class="product">
                         <div style={{width:'50px',height:'50px'}}>
                         <img src="${product?.img}" alt="Product 1">
                         </div>
@@ -179,8 +181,8 @@ const transporter = nodemailer.createTransport({
                 </div>`
                     })
                 }
-                <hr/>
                 
+                <hr/>
                 ${Number(total) < 60 && `<div>
                 <p>
                 Delivery Fees:
@@ -204,7 +206,7 @@ const transporter = nodemailer.createTransport({
         </body>
         <footer>
         <br />
-        <div className='centered'>
+        <div class='centered'>
         <p><a href="https://thecraftroom-lb.com/unsubscribe">unsubscribe</a></p>
         <p><a href="mailto:sales@thecraftroom-lb.com">sales@thecraftroom-lb.com</a></p>
         <p>+961 03874743</p>
