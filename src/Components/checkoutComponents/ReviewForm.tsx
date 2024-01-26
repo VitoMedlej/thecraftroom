@@ -71,11 +71,18 @@ export default function Review({setActiveStep}:{setActiveStep:any}) {
   $3
 </Typography>
 </ListItem> */}
+ {Number(total) < 60 && <ListItem sx={{ px: 0 }}>
+
+<ListItemText primary="Delivery Fees" />
+<Typography variant="subtitle1" sx={{ fontWeight: 500 }}>
+  $4 (Free delivery for orders over $60)
+</Typography>
+</ListItem>}
         <ListItem sx={{ px: 0 }}>
 
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            ${total}
+            ${Number(total) >= 60 ? total : Number(total) + 4}
           </Typography>
         </ListItem>
       </List>
