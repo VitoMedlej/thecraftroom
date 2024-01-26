@@ -78,9 +78,7 @@ const transporter = nodemailer.createTransport({
                     text-decoration: none;
                     color: white !important;
                     margin-top:4px !important;
-                    // width: 100%;
                     width:max-content;
-                    // max-width:100%;
                     background-color: #007bff;
                     border-radius: 3px;
                 }
@@ -180,29 +178,32 @@ const transporter = nodemailer.createTransport({
                 </div>
         
                 ${
-                    order && order.map(product=>{
-                        if (!product?._id) return;
-                        return   `<div  class="product">
-                        <div style={{width:'50px',height:'50px'}}>
-                        <img src="${product?.img}" alt="Product 1">
-                        </div>
-                    <div class="product-details">
-                        <p class="product-title">${product?.title}</p>
-                        <p class="product-description">
-                        Quantity: ${product?.qty}</p>
-                    </div>
-                </div>`
-                    })
+                    order && order.map(product => {
+                        if (!product?._id) return '';
+                        return `
+                            <div class="product">
+                                <div style="width:50px;height:50px;">
+                                    <img src='${product?.img}' alt="Product 1">
+                                </div>
+                                <div class="product-details">
+                                    <p class="product-title">${product?.title}</p>
+                                    <p class="product-description">
+                                        Quantity: ${product?.qty}
+                                    </p>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')
                 }
                 
                 <hr/>
                 ${Number(total) < 60 ? `<div>
                 <p>
                 Delivery Fees:
-                </p>
                 <span>
                   {' '} $4
                 </span>
+                </p>
 
                 </div>`: '' }   
                 
