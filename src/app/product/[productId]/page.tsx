@@ -24,7 +24,6 @@ const Index = () => {
     const [loading,setLoading] = useState(false)
     const [selectedQuantity,setSelectedQuantity] = useState(1)
     const [selectedColor,setSelectedColor] = useState('')
-    console.log('selectedColor: ', selectedColor);
     const [data,setData] = useState<{
       product: IProduct | any ;
       moreProducts: IProduct[] | never[];

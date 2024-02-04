@@ -16,6 +16,7 @@ import AddressForm from '@/Components/checkoutComponents/AddressForm';
 import ReviewForm from '@/Components/checkoutComponents/ReviewForm';
 import { server } from '@/Utils/Server';
 import { loadState, saveState } from '@/Utils/LocalstorageFn';
+import { useDiscountContext } from '@/context/Contexts';
 
 
 
@@ -38,6 +39,7 @@ const theme = createTheme();
 
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
+  const {discountedPrice, setDiscountedPrice} = useDiscountContext();
 
   
   const handleBack = () => {
@@ -78,8 +80,8 @@ export default function Checkout() {
       const products = loadState('shping-list')
  
 
-      const total = 10
-      if (products && info && total) {
+      const total = 0
+      if (products && info ) {
 
         // saveState('order',{info,products,total})
         const rawResponse = await fetch(`${server}/api/save-order`, {
@@ -88,10 +90,11 @@ export default function Checkout() {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({order:{info,products,total}})
+            body: JSON.stringify({order:{info,products,total,discountedPrice}})
         });
   const content = await rawResponse.json();
   saveState('order-bag',null)
+  setDiscountedPrice(0)
   saveState('shping-list',null)
 
 }

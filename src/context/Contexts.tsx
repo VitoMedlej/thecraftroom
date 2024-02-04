@@ -6,6 +6,7 @@ import NextNProgress from 'nextjs-progressbar';
 export const DrawerContext = createContext < any > ({});
 export const CartContext = createContext < any > ({});
 export const Categories = createContext < any > ([]);
+export const DiscountContext = createContext < any > (0);
 
 
 
@@ -13,15 +14,17 @@ export const Categories = createContext < any > ([]);
         children: React.ReactNode;
       }
       ) => {
-            const a = 421412;
         const [open,
             setOpen] = useState(false);
         const [cartOpen,
             setCartOpen] = useState(false);
             const [cates,
                 setCates] = useState([]);
+    const [discountedPrice, setDiscountedPrice] = useState(0);
+
             return (
-                
+                <DiscountContext.Provider value={{discountedPrice,setDiscountedPrice}}>
+
                 <DrawerContext.Provider value={{open,setOpen}}>
         <Categories.Provider value={{cates, setCates}}>
         <CartContext.Provider value={{cartOpen, setCartOpen}}>
@@ -35,6 +38,8 @@ export const Categories = createContext < any > ([]);
         </CartContext.Provider>
         </Categories.Provider>
     </DrawerContext.Provider>
+    </DiscountContext.Provider>
+
             )
         }
 
@@ -43,3 +48,4 @@ export default ContextWrapper
 export const useDrawerContext = () => useContext(DrawerContext);
 export const useCartContext = () => useContext(CartContext);
 export const useCategoriesContext = () => useContext(Categories);
+export const useDiscountContext = () => useContext(DiscountContext);

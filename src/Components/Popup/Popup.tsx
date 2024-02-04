@@ -28,7 +28,7 @@ const Index = () => {
     onClose={closeModal}
     className='flex center auto items-center' sx={{}}>
     <>
-      <Box className='flex row relative' sx={{background:'white',width:{xs:'100%',sm:'600px'},height:{xs:'400px',sm:'500px'}}}>
+      <Box className='flex row relative' sx={{background:'white',px:{xs:2,sm:4},py:4,width:{xs:'100%',sm:'auto'},height:{xs:'400px',sm:'auto'}}}>
       <IconButton
       onClick={()=>closeModal()}
       sx={{color:'red',position:'absolute',top:0,right:0}}>

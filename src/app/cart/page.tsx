@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import {Box, Divider, Typography} from '@mui/material'
+import {Box, Divider, TextField, Typography} from '@mui/material'
 import Link from 'next/link'
 import {AiOutlineShoppingCart} from 'react-icons/ai';
 
@@ -10,6 +10,8 @@ import CartProduct from '@/Components/Shared/QuantityPicker/CartProduct';
 import { ICartItem } from '@/Types/Types';
 import { loadState, saveState } from '@/Utils/LocalstorageFn';
 import totalCal from '@/Utils/totalCal';
+import { server } from '@/Utils/Server';
+import { useDiscountContext } from '@/context/Contexts';
 
 const titleStyle = {
     fontSize: '1.3em',
@@ -62,28 +64,76 @@ const EmptyCartAlert = () => {
 
 const Cart = () => {
     const [cartItems,setCartItems] = useState<ICartItem[]>([])
+    const [promocode,setPromocode] = useState('')
+    const [err,setErr] = useState('')
+    const [loading,setLoading] = useState(false)
+    const {discountedPrice, setDiscountedPrice} = useDiscountContext();
+    
     const total= totalCal(cartItems) || 0; 
+    console.log('total: ', total);
     const router = useRouter()
     let localCart : ICartItem[] = loadState('shping-list') || []
+
     useEffect(() => {
         if (localCart) {
-            
+            setPromocode('');
+            setDiscountedPrice(0)
             setCartItems(localCart)
     }
-      
     }, [])
+
+   
+    
+
     const refetchState = () => {
         // let localCart : ICartItem[] = loadState('userbag') || []
 
         setCartItems(loadState('shping-list'))
         
     }
+    const handlePromoChange = async () => {
+        setLoading(true)   
+            if (!promocode || `${promocode}`?.length < 3) {
+                setErr('Please Enter a valid Code!') 
+                setLoading(false)   
+            setDiscountedPrice(0)
+
+                return
+            } 
+            console.log('promocode: ', promocode);
+            const rawResponse = await fetch(`${server}/api/use-promo`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({order:{code:promocode,total,cartItems}})
+            });
+            const content = await rawResponse.json();
+            console.log('content: ', content);
+            if (!content?.success) {
+                setErr(`${content?.message}`)    
+            setDiscountedPrice(0)
+            setLoading(false)   
+
+                return
+            }
+            setDiscountedPrice(Number(content?.discountedPrice))
+
+            setLoading(false)   
+        }
     const remove = (id:string) => {
         let state = cartItems.filter(x => `${x._id}` !== id);
          saveState('shping-list', state);
          setCartItems(state);
      }
-     
+     useEffect(() => {
+        
+        if(total && promocode) {
+            handlePromoChange()
+        }
+    
+    }, [total])
     const pathname = usePathname()
 
      const [lastPage, setLastPage] = useState('/collection/products')
@@ -141,6 +191,7 @@ const Cart = () => {
                
                 <Box
                     sx={{
+                        
                     padding: '1em',
                     mt:{xs:'2em',sm:0},
                     height: 'fit-content',
@@ -148,29 +199,86 @@ const Cart = () => {
                         xs: '100%',
                         md: '25%'
                     },
-                    // boxShadow:'1px 1px 3px #0000002b'
+                    borderRadius:'3px',
+                    border:'1px  solid #0000001c'
                 }}>
                   
                     <Typography sx={{
                         ...titleStyle
                     }}>Order Summary</Typography>
-                  
+                    
+                           <Box 
+                    sx={{
+                      mt:1,
+                      justifyContent: 'space-between !IMPORTANT'
+                  }}
+                    className='flex  items-center row'> 
+
+                <span>Sub-total:
+                </span>
+
+                    <Typography sx={{
+                        fontWeight: '400'
+                    }}>${
+                        cartItems?.length > 0 
+                          ? Number(total  + Number(process.env.NEXT_PUBLIC_FEE || 0) )?.toFixed(2)
+                          : 0
+                      }</Typography>
+                    
+                    </Box>
+
+           {discountedPrice ?       <Box 
+                    sx={{
+                      mt:1,
+                      justifyContent: 'space-between !IMPORTANT'
+                  }}
+                    className='flex  items-center row'> 
+
+                <span>Discount:
+                </span>
+
+                    <Typography sx={{
+                        fontWeight: '400'
+                    }}>
+
+{
+          
+          Number(
+
+              ((Number(total) - Number(discountedPrice)) / Number(total)) * 100
+              ).toFixed(2)
+                        }%
+                    </Typography>
+                    
+                    </Box>
+                :''    
+                }
                 
-                    <Divider></Divider>
                     <Box 
                     sx={{
                       mt:1,
-                      justifyContent: 'space-between'
+                      justifyContent: 'space-between !IMPORTANT'
                   }}
-                    className='flexed'> 
+                    className='flex  items-center row'> 
 
                 <span>Total:
+                </span>
 
                     <Typography sx={{
                         fontWeight: '600'
-                    }}>${cartItems?.length > 0 ? total + Number(process.env.NEXT_PUBLIC_FEE || 0) : 0}</Typography>
+                    }}>${
+                       Number( cartItems?.length > 0 
+                        ?
+                        (discountedPrice && discountedPrice !== 0 ) ?
+discountedPrice  + Number(process.env.NEXT_PUBLIC_FEE || 0)
+:                        
+                        total + Number(process.env.NEXT_PUBLIC_FEE || 0) 
+                        : 0
+                        
+                        
+                        )?.toFixed(2)
+                      }</Typography>
                     
-                    </span>
                     </Box>
                     <Link href='/checkout'
                     
@@ -186,7 +294,32 @@ const Cart = () => {
                         onClick={continueShopping}
                      sx={{mx:0,':hover':{background:'white',color:'black'},background:'transparent',borderRadius:'25px',width:'100%',mt:1}}>Continue Shopping</Btn>
                     {/* </Link> */}
-                
+                   
+
+                    <Box sx={{pt:3}}>
+
+                    <Typography sx={{
+                        ...titleStyle
+                    }}>Have Promo code?</Typography>
+                     <Typography sx={{fontSize:'.75em',color:'red'}}>{err}</Typography>
+                    <Box className="flex center col items-center">
+
+                  <TextField
+          value={`${promocode}`?.toUpperCase()?.slice(0,10)}
+          onChange={(e)=>setPromocode(e?.target?.value)}
+          
+          id="promocode"
+          name="promocode"
+          label="Enter Code"
+          fullWidth
+          autoComplete="promo-code"
+          variant="standard"
+          />
+          <Btn disabled={loading || !promocode || promocode?.length < 3} onClick={()=>handlePromoChange()} sx={{py:.25,fontSize:'.78em',color:'white',mt:1,mx:'auto',width:'max-content'}}>
+            Apply Code
+          </Btn>
+          </Box>
+                    </Box>
                 </Box>
                 
             </Box>

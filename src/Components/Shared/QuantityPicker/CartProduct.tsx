@@ -16,7 +16,6 @@ import Btn from '@/Components/Btn/Btn';
 const CartProduct = ({onChange,_id,price,category,title,remove,qty,img,selectedColor}:ICartItem) => {
  
     const {incrementQty} = useCart()
-    console.log('selectedColor: ', selectedColor);
     return (
     <Box sx={{borderTop:'1px solid #0000001a',flex:1}}>
         <Box

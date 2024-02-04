@@ -15,7 +15,7 @@ export async function POST(req : NextRequest, res : NextApiResponse) {
         return NextResponse.json({success: false});      
     }
     
-    const Users = await client.db("PETS").collection("CLIENTS");
+    const Users = await client.db("CRAFT").collection("CLIENTS");
 
     // let moreProducts: any[]= []
     const selectedUser = await Users

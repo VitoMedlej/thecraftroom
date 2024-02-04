@@ -8,6 +8,7 @@ import Grid from '@mui/material/Grid';
 import { Divider } from '@mui/material';
 import { loadState } from '@/Utils/LocalstorageFn';
 import totalCal from '@/Utils/totalCal';
+import { useDiscountContext } from '@/context/Contexts';
 
 
 // const products = [
@@ -39,12 +40,17 @@ import totalCal from '@/Utils/totalCal';
       // return 0
 // }  
 export default function Review({setActiveStep}:{setActiveStep:any}) {
+  const {discountedPrice} = useDiscountContext();
+  console.log('discountedPrice: ', discountedPrice);
 
+
+ 
+  
   const products = loadState('shping-list')
  
   const info = loadState('order-bag')
-
-  const total = totalCal(products);
+  
+  const total =  discountedPrice ? discountedPrice : totalCal(products);
   if (!info) {
     setActiveStep(0)
   }
@@ -80,7 +86,7 @@ export default function Review({setActiveStep}:{setActiveStep:any}) {
 </ListItem>}
         <ListItem sx={{ px: 0 }}>
 
-          <ListItemText primary="Total" />
+          <ListItemText primary={`Total ${discountedPrice !== 0 ? '(After discount)' : '' }`} />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
             ${Number(total) >= 60 ? total : Number(total) + 4}
           </Typography>
