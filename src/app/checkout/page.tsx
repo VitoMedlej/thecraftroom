@@ -16,7 +16,7 @@ import AddressForm from '@/Components/checkoutComponents/AddressForm';
 import ReviewForm from '@/Components/checkoutComponents/ReviewForm';
 import { server } from '@/Utils/Server';
 import { loadState, saveState } from '@/Utils/LocalstorageFn';
-import { useDiscountContext } from '@/context/Contexts';
+import { useDiscountContext, usePromoContext } from '@/context/Contexts';
 
 
 
@@ -40,7 +40,8 @@ const theme = createTheme();
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
   const {discountedPrice, setDiscountedPrice} = useDiscountContext();
-
+  const {promoCode, setpromoCode} = usePromoContext();
+  
   
   const handleBack = () => {
     setActiveStep(activeStep - 1);
@@ -90,9 +91,10 @@ export default function Checkout() {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({order:{info,products,total,discountedPrice}})
+            body: JSON.stringify({order:{info,products,total,discountedPrice,promoCode: promoCode? promoCode : null}})
         });
-  const content = await rawResponse.json();
+        setpromoCode(null)
+  await rawResponse.json();
   saveState('order-bag',null)
   setDiscountedPrice(0)
   saveState('shping-list',null)

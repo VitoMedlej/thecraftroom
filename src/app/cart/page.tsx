@@ -11,7 +11,7 @@ import { ICartItem } from '@/Types/Types';
 import { loadState, saveState } from '@/Utils/LocalstorageFn';
 import totalCal from '@/Utils/totalCal';
 import { server } from '@/Utils/Server';
-import { useDiscountContext } from '@/context/Contexts';
+import { useDiscountContext, usePromoContext } from '@/context/Contexts';
 
 const titleStyle = {
     fontSize: '1.3em',
@@ -68,6 +68,7 @@ const Cart = () => {
     const [err,setErr] = useState('')
     const [loading,setLoading] = useState(false)
     const {discountedPrice, setDiscountedPrice} = useDiscountContext();
+  const {promoCode, setpromoCode} = usePromoContext();
     
     const total= totalCal(cartItems) || 0; 
     console.log('total: ', total);
@@ -77,7 +78,9 @@ const Cart = () => {
     useEffect(() => {
         if (localCart) {
             setPromocode('');
+            setErr('')
             setDiscountedPrice(0)
+            setpromoCode(null)
             setCartItems(localCart)
     }
     }, [])
@@ -92,12 +95,14 @@ const Cart = () => {
         
     }
     const handlePromoChange = async () => {
+        setErr('')
         setLoading(true)   
             if (!promocode || `${promocode}`?.length < 3) {
                 setErr('Please Enter a valid Code!') 
                 setLoading(false)   
+                
             setDiscountedPrice(0)
-
+            setpromoCode(null)
                 return
             } 
             console.log('promocode: ', promocode);
@@ -109,27 +114,34 @@ const Cart = () => {
                 },
                 body: JSON.stringify({order:{code:promocode,total,cartItems}})
             });
+
             const content = await rawResponse.json();
             console.log('content: ', content);
             if (!content?.success) {
                 setErr(`${content?.message}`)    
             setDiscountedPrice(0)
+            setpromoCode(null)
+
             setLoading(false)   
 
                 return
             }
+            setErr('')    
             setDiscountedPrice(Number(content?.discountedPrice))
-
+            setpromoCode(promocode)
             setLoading(false)   
         }
     const remove = (id:string) => {
         let state = cartItems.filter(x => `${x._id}` !== id);
          saveState('shping-list', state);
          setCartItems(state);
+         setpromoCode(null)
+
      }
      useEffect(() => {
         
         if(total && promocode) {
+            setErr('')
             handlePromoChange()
         }
     
@@ -305,6 +317,8 @@ discountedPrice  + Number(process.env.NEXT_PUBLIC_FEE || 0)
                     <Box className="flex center col items-center">
 
                   <TextField
+
+                  disabled={cartItems?.length < 1}
           value={`${promocode}`?.toUpperCase()?.slice(0,10)}
           onChange={(e)=>setPromocode(e?.target?.value)}
           

@@ -7,6 +7,7 @@ export const DrawerContext = createContext < any > ({});
 export const CartContext = createContext < any > ({});
 export const Categories = createContext < any > ([]);
 export const DiscountContext = createContext < any > (0);
+export const PromoContext = createContext < any > (0);
 
 
 
@@ -21,8 +22,11 @@ export const DiscountContext = createContext < any > (0);
             const [cates,
                 setCates] = useState([]);
     const [discountedPrice, setDiscountedPrice] = useState(0);
+    const [promoCode, setpromoCode] = useState(null);
 
             return (
+                <PromoContext.Provider value={{promoCode,setpromoCode}}>
+
                 <DiscountContext.Provider value={{discountedPrice,setDiscountedPrice}}>
 
                 <DrawerContext.Provider value={{open,setOpen}}>
@@ -39,6 +43,7 @@ export const DiscountContext = createContext < any > (0);
         </Categories.Provider>
     </DrawerContext.Provider>
     </DiscountContext.Provider>
+    </PromoContext.Provider>
 
             )
         }
@@ -49,3 +54,4 @@ export const useDrawerContext = () => useContext(DrawerContext);
 export const useCartContext = () => useContext(CartContext);
 export const useCategoriesContext = () => useContext(Categories);
 export const useDiscountContext = () => useContext(DiscountContext);
+export const usePromoContext = () => useContext(PromoContext);

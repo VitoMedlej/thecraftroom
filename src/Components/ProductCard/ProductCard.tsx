@@ -49,7 +49,7 @@ title: string,
             sx={{
             border : '1px solid #000000a',
             py: 1,
-            margin: '0em auto',
+            margin: '.35em auto',
             minWidth: {xs:'150px',sm:'32%',md:'283px',lg:'300px'},
             width: width
                 ? width

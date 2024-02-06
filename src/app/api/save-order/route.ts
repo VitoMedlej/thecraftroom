@@ -7,6 +7,8 @@ import { type NextRequest } from 'next/server'
 import nodemailer from 'nodemailer';
 import { nanoid } from 'nanoid'
 import totalCal from '@/Utils/totalCal';
+import { PromoType } from '../use-promo/route';
+import { ObjectId } from 'mongodb';
 
 const transporter = nodemailer.createTransport({
     host: "mail.smtp2go.com",
@@ -19,6 +21,27 @@ const transporter = nodemailer.createTransport({
 });
 
 
+async function increaseUsageCountPromo(code:PromoType) {
+    try{
+    // Update usageCount in MongoDB
+    const Codes = await client.db('CRAFT').collection('Coupons');
+    const res =  await Codes.updateOne(
+        // { _id: new ObjectId(code._id) },
+        { code },
+        { $inc: { usageCount: 1 } }
+        );
+
+        console.log('res: ', res);
+   if( !res?.acknowledged) {
+       return 
+   }
+   console.log('res: ', res);
+    }
+    catch(e){
+        console.log('e: ', e);
+
+    }
+}
  async function sendOrderConfirmationEmail(discountedPrice: number | undefined,orderId: string, toEmail: string, order: any[]): Promise<boolean> {
     try {
         // let orderId = nanoid()
@@ -250,22 +273,33 @@ const transporter = nodemailer.createTransport({
 export  async function POST(req: NextRequest, res: NextApiResponse) {
   // const order = req?.body.get('order')
   const {order} = await req.json()
+  
   let orderId = nanoid()
         orderId = `${orderId}`.replace(/[^a-zA-Z0-9]/g, '')?.slice(0,6)?.toUpperCase()
   console.log('order: ', order);
+
+
 let discountedPrice = order?.discountedPrice || 0
   if (req.method === 'POST') {
     // Process a POST request
     if (!order || !order?.info?.email) return NextResponse.json({success:false})
        const insertReq = await client.db("CRAFT").collection("Orders").insertOne({...order,orderID: `${orderId}`});
-       const insertReqBACKUP = await client.db("CRAFT").collection("OrdersBACKUP").insertOne({...order,orderID: `${orderId}`});
+        await client.db("CRAFT").collection("OrdersBACKUP").insertOne({...order,orderID: `${orderId}`});
        if (insertReq.acknowledged ) {         
-        // if (true ) {         
-        const emailStatus = await sendOrderConfirmationEmail(discountedPrice,orderId,`${order?.info?.email}`,order?.products)
-        // console.log('emailStatus: ', emailStatus);
+        if (order?.promoCode ) {
+
+            await increaseUsageCountPromo(order?.promoCode)
+        }         
+         await sendOrderConfirmationEmail(discountedPrice,orderId,`${order?.info?.email}`,order?.products)
+
+
+
+
          return NextResponse.json({success:true});
         }
 }
 return NextResponse.json({success:false});
 
 }
+
+

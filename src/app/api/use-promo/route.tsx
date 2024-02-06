@@ -44,7 +44,7 @@ export async function POST(req: NextRequest, res: NextApiResponse) {
 
 export const dynamic = 'force-dynamic';
 
-interface PromoType {
+export interface PromoType {
     _id: string;
   code: string;
   discountType: string;
@@ -98,17 +98,7 @@ async function isValidPromoCode(order : any,promoCode: PromoType) {
 // Function to update usageCount and calculate discount price
 async function applyPromoCode(order: any, promoCode: PromoType) {
     try {
-      // Update usageCount in MongoDB
-      const Codes = await client.db('CRAFT').collection('Coupons');
-     const res =  await Codes.updateOne(
-         { _id: new ObjectId(promoCode._id) },
-         { $inc: { usageCount: 1 } }
-         );
-
-    if( !res?.acknowledged) {
-        return 
-    }
-    console.log('res: ', res);
+  
   
       // Calculate discount price based on discountType and discountValue
       let discountedPrice;
