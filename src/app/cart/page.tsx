@@ -239,7 +239,7 @@ const Cart = () => {
                     
                     </Box>
 
-           {discountedPrice ?       <Box 
+           {discountedPrice && cartItems ?       <Box 
                     sx={{
                       mt:1,
                       justifyContent: 'space-between !IMPORTANT'

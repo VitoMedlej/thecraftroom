@@ -117,6 +117,7 @@ async function applyPromoCode(order: any, promoCode: PromoType) {
   
       // Ensure the discounted price is not less than the minimum order amount
       const finalPrice = Math.max(discountedPrice, promoCode.minimumOrderAmount);
+      console.log('finalPrice: ', finalPrice);
   
       return finalPrice;
     } catch (error) {
