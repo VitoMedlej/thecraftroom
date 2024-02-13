@@ -68,7 +68,7 @@ const Cart = () => {
     const [err,setErr] = useState('')
     const [loading,setLoading] = useState(false)
     const {discountedPrice, setDiscountedPrice} = useDiscountContext();
-  const {promoCode, setpromoCode} = usePromoContext();
+  const {setpromoCode} = usePromoContext();
     
     const total= totalCal(cartItems) || 0; 
     console.log('total: ', total);
@@ -329,7 +329,8 @@ discountedPrice  + Number(process.env.NEXT_PUBLIC_FEE || 0)
           autoComplete="promo-code"
           variant="standard"
           />
-          <Btn disabled={loading || !promocode || promocode?.length < 3} onClick={()=>handlePromoChange()} sx={{py:.25,fontSize:'.78em',color:'white',mt:1,mx:'auto',width:'max-content'}}>
+          <Btn disabled={loading || !promocode || promocode?.length < 3}
+           onClick={()=>handlePromoChange()} sx={{py:.25,fontSize:'.78em',color:'white',mt:1,mx:'auto',width:'max-content'}}>
             Apply Code
           </Btn>
           </Box>

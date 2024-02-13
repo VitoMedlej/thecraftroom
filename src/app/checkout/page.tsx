@@ -102,7 +102,39 @@ export default function Checkout() {
 }
   }
 
+  const handlePromoChange = async () => {
+    const cartItems = loadState('shping-list')
+   
+        if (!promoCode || `${promoCode}`?.length < 3 || !cartItems) {
+            // setErr('Please Enter a valid Code!') 
+            // setLoading(false)   
+            
+        setDiscountedPrice(0)
+        setpromoCode(null)
+            return
+        } 
+        let order = {code:promoCode,total:0,cartItems}
+        console.log('order: ', order);
+        const rawResponse = await fetch(`${server}/api/use-promo`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({order})
+        });
 
+        const content = await rawResponse.json();
+        console.log('content: ', content);
+        if (!content?.success) {
+        setDiscountedPrice(0)
+        setpromoCode(null)
+
+
+            return
+        }
+        setDiscountedPrice(Number(content?.discountedPrice))
+    }
   
   useEffect(() => {
     
@@ -111,6 +143,13 @@ export default function Checkout() {
     }
     
   }, [saved])
+  useEffect(() => {
+    
+    if (promoCode && !discountedPrice) {
+      handlePromoChange()
+    }
+   
+  }, [])
   
   return (
   <>
