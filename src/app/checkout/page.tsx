@@ -1,6 +1,5 @@
 "use client"
-import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
+// import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
@@ -9,7 +8,7 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+// import { createTheme, ThemeProvider } from '@mui/material/styles';
 // import PaymentForm from './PaymentForm';
 import { useEffect, useState } from 'react';
 import AddressForm from '@/Components/checkoutComponents/AddressForm';
@@ -17,6 +16,8 @@ import ReviewForm from '@/Components/checkoutComponents/ReviewForm';
 import { server } from '@/Utils/Server';
 import { loadState, saveState } from '@/Utils/LocalstorageFn';
 import { useDiscountContext, usePromoContext } from '@/context/Contexts';
+import { useParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
+import totalCal from '@/Utils/totalCal';
 
 
 
@@ -35,12 +36,17 @@ function getStepContent(step: number,setInfo:any,handleChange:any,info:any,setAc
   }
 }
 
-const theme = createTheme();
+// const theme = createTheme();
 
-export default function Checkout() {
-  const [activeStep, setActiveStep] = React.useState(0);
+ function Index() {
+  const [activeStep, setActiveStep] = useState(0);
   const {discountedPrice, setDiscountedPrice} = useDiscountContext();
   const {promoCode, setpromoCode} = usePromoContext();
+  const searchParams = useSearchParams()
+ 
+  const p = searchParams.get('p')
+ 
+
   
   
   const handleBack = () => {
@@ -81,7 +87,8 @@ export default function Checkout() {
       const products = loadState('shping-list')
  
 
-      const total = 0
+      const total= totalCal(products) || 0; 
+      console.log('total: ', total);
       if (products && info ) {
 
         // saveState('order',{info,products,total})
@@ -97,15 +104,18 @@ export default function Checkout() {
   await rawResponse.json();
   saveState('order-bag',null)
   setDiscountedPrice(0)
+  setpromoCode(null)
   saveState('shping-list',null)
 
 }
   }
 
-  const handlePromoChange = async () => {
+  const handlePromoChange = async (code:string) => {
+    console.log('code: ', code);
     const cartItems = loadState('shping-list')
-   
-        if (!promoCode || `${promoCode}`?.length < 3 || !cartItems) {
+    const total= totalCal(cartItems) || 0; 
+    console.log('total: ', total);
+        if (!code || `${code}`?.length < 3 || !cartItems) {
             // setErr('Please Enter a valid Code!') 
             // setLoading(false)   
             
@@ -113,7 +123,7 @@ export default function Checkout() {
         setpromoCode(null)
             return
         } 
-        let order = {code:promoCode,total:0,cartItems}
+        let order = {code,total,cartItems}
         console.log('order: ', order);
         const rawResponse = await fetch(`${server}/api/use-promo`, {
             method: 'POST',
@@ -133,6 +143,8 @@ export default function Checkout() {
 
             return
         }
+        setpromoCode(code)
+
         setDiscountedPrice(Number(content?.discountedPrice))
     }
   
@@ -145,17 +157,17 @@ export default function Checkout() {
   }, [saved])
   useEffect(() => {
     
-    if (promoCode && !discountedPrice) {
-      handlePromoChange()
+    if (p && p?.length > 1 && !promoCode || !discountedPrice) {
+      handlePromoChange(`${p}`)
     }
    
-  }, [])
+  }, [p])
   
   return (
   <>
 
-  <ThemeProvider theme={theme}>
-      <CssBaseline />
+  {/* <ThemeProvider theme={theme}> */}
+      {/* <CssBaseline /> */}
   
       <Container component="main" maxWidth="sm" sx={{ mt:20, mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
@@ -170,16 +182,16 @@ export default function Checkout() {
             ))}
           </Stepper>
           {activeStep === steps.length ? (
-            <React.Fragment>
+            <>
               <Typography variant="h5" gutterBottom>
                 Thank you for your order.
               </Typography>
               <Typography variant="subtitle1">
                 Your order number has been recorded! We will message you soon, so please stay alert.
               </Typography>
-            </React.Fragment>
+            </>
           ) : (
-            <React.Fragment>
+            <>
               {getStepContent(activeStep,setInfo,handleChange,info,setActiveStep)}
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 {activeStep !== 0 && (
@@ -200,12 +212,14 @@ export default function Checkout() {
                   {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                 </Button>
               </Box>
-            </React.Fragment>
+            </>
           )}
         </Paper>
       </Container>
-    </ThemeProvider>
+    {/* </ThemeProvider> */}
   </>
 
   );
 }
+
+export default Index

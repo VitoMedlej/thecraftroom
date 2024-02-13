@@ -68,9 +68,9 @@ const Cart = () => {
     const [err,setErr] = useState('')
     const [loading,setLoading] = useState(false)
     const {discountedPrice, setDiscountedPrice} = useDiscountContext();
-  const {setpromoCode} = usePromoContext();
-    
+    const {promoCode,setpromoCode} = usePromoContext(); 
     const total= totalCal(cartItems) || 0; 
+
     console.log('total: ', total);
     const router = useRouter()
     let localCart : ICartItem[] = loadState('shping-list') || []
@@ -292,7 +292,12 @@ discountedPrice  + Number(process.env.NEXT_PUBLIC_FEE || 0)
                       }</Typography>
                     
                     </Box>
-                    <Link href='/checkout'
+                    <Link href={discountedPrice && promoCode && cartItems ?
+                    
+                    `/checkout?p=${promoCode}` : 
+                    '/checkout'
+                    
+                }
                     
                     className='decor-none bg'>
 
@@ -342,7 +347,7 @@ discountedPrice  + Number(process.env.NEXT_PUBLIC_FEE || 0)
     )
 }
 
-const Index = () => {
+const Page = () => {
     return ( <>
     {
         false
@@ -355,4 +360,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default Page

@@ -12,7 +12,7 @@ import Btn from '@/Components/Btn/Btn';
 import {GrFormClose} from 'react-icons/gr'
 import CartProduct from '../QuantityPicker/CartProduct';
 
-export default function TemporaryDrawer() {
+export default function QuickCart() {
     const router = useRouter()
     const {cartOpen,
         setCartOpen} = useCartContext();
