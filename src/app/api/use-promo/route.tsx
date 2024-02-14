@@ -97,31 +97,31 @@ async function isValidPromoCode(order : any,promoCode: PromoType) {
 
 // Function to update usageCount and calculate discount price
 async function applyPromoCode(order: any, promoCode: PromoType) {
-    try {
-  
-  
-      // Calculate discount price based on discountType and discountValue
-      let discountedPrice;
-  
-      if (promoCode.discountType === 'percentage') {
-        // Discount is a percentage
-        const discountPercentage = promoCode.discountValue / 100;
-        discountedPrice = Number(order.total) - Number(order.total) * discountPercentage;
-      } else if (promoCode.discountType === 'fixed') {
-        // Discount is a fixed amount
-        discountedPrice = Number(order.total) - promoCode.discountValue;
-      } else {
-        // Unknown discount type
-        throw new Error('Unknown discount type');
-      }
-  
-      // Ensure the discounted price is not less than the minimum order amount
-      const finalPrice = Math.max(discountedPrice, promoCode.minimumOrderAmount);
-      console.log('finalPrice: ', finalPrice);
-  
-      return finalPrice;
-    } catch (error) {
-      console.error('Error applying promo code', error);
-      throw new Error('Error applying promo code');
+  try {
+    console.log('promoCode: ', promoCode);
+    // Calculate discount price based on discountType and discountValue
+    let discountedPrice;
+
+    if (promoCode.discountType === 'percentage') {
+      // Discount is a percentage
+      const discountPercentage = promoCode.discountValue / 100;
+      discountedPrice = Number(order.total) - Number(order.total) * discountPercentage;
+    } else if (promoCode.discountType === 'fixed') {
+      // Discount is a fixed amount
+      discountedPrice = Number(order.total) - promoCode.discountValue;
+    } else {
+      // Unknown discount type
+      throw new Error('Unknown discount type');
     }
+
+    // Ensure the discounted price is not less than zero
+    discountedPrice = Math.max(discountedPrice, 0);
+
+    console.log('finalPrice: ', discountedPrice); // Log the discountedPrice as finalPrice
+
+    return discountedPrice; // Return discountedPrice as finalPrice
+  } catch (error) {
+    console.error('Error applying promo code', error);
+    throw new Error('Error applying promo code');
   }
+}
