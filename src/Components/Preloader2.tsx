@@ -34,7 +34,7 @@ const Preloader2 = ({data,totalPages}:any) => {
 
 
     const fetchData = async (val:number) => {
-        router.push(`/${category || 'collection'}/products?type=${type ? encodeURIComponent(type) : null}&page=${Number(val) }`)
+        router.push(`/${category || 'collection'}/products?type=${type ? encodeURIComponent(type) : null}&page=${Number(val)}&search=${search ? search: null}`)
       
     const url =  `/api/get-cate?category=${category ? category : 'collection'}&page=${`${Number(val - 1) || 0}`}&search=${search ? search : 'null'}&type=${type ? encodeURIComponent(type) : 'null'}`  ;
     // const url = '/abc'
