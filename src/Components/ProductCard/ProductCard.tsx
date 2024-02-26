@@ -49,13 +49,14 @@ title: string,
             sx={{
             border : '1px solid #000000a',
             py: 1,
-            margin: '.35em auto',
-            minWidth: {xs:'150px',sm:'32%',md:'283px',lg:'300px'},
+            margin:{xs: '.25em auto' ,sm: '.35em auto'},
+            minWidth: {xs:'200px',sm:'32%',md:'283px',lg:'300px'},
             width: width
                 ? width
                 : {
-                    xs: '47%',
-                    sm: '32%'
+                    xs: '98%',
+                    sm: '32%',
+                    xl:'23%'
                 }
         }}>
             <Box 
