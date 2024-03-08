@@ -38,7 +38,7 @@ export default function SearchInput({sx,mobile}:{mobile?:boolean,sx?:any}) {
         borderRadius:'20px',
         
          display: mobile ? {xs:'flex',md:'none'} : {xs:'none',md:'flex'},
-          alignItems: 'center',width:'100%',maxWidth: {xs:'99%',md:'350px',lg:'450px'} 
+          alignItems: 'center',width:'100%',maxWidth: {xs:'95vw',md:'350px',lg:'450px'} 
          ,...sx
         }}
     >

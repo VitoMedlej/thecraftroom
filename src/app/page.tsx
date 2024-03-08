@@ -64,15 +64,15 @@ try {
             {
               img: "https://ucarecdn.com/86bf0636-d0f4-4cc8-80f8-0dfe13c32f9a/",
               text: ""
-            },
-            {
+          },
+          {
               img: "https://ucarecdn.com/10f77ede-3f73-4e76-b8fd-78aa45525f3b/",
               text: ""
-            },
-            {
+          },
+          {
               img: "https://ucarecdn.com/6dc7e192-1829-4749-b5f3-3891cc84e25b/",
               text: ""
-            }
+          }
           ],
           first: "https://ucarecdn.com/f5ef81d8-a2ae-431e-82dd-acfb34b422de/",
           second: "https://ucarecdn.com/dc7801f9-f450-4444-af5f-4e77366daa58/",

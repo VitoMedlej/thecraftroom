@@ -14,15 +14,15 @@ const Preloader3 = ({res}:{res:any}) => {
     const [imgs,setImgs] = useState(
         [
           {
-            img: "https://ucarecdn.com/3f3fde0c-4880-4830-ace9-9e82b0c94808/",
+            img: "https://ucarecdn.com/86bf0636-d0f4-4cc8-80f8-0dfe13c32f9a/",
             text: ""
         },
         {
-            img: "https://ucarecdn.com/fc9142a1-60ce-42c8-bb19-24c8167a72e4/",
+            img: "https://ucarecdn.com/10f77ede-3f73-4e76-b8fd-78aa45525f3b/",
             text: ""
         },
         {
-            img: "https://ucarecdn.com/77b42530-6847-43df-bcad-1dbe7fd059ee/",
+            img: "https://ucarecdn.com/6dc7e192-1829-4749-b5f3-3891cc84e25b/",
             text: ""
         }
           ]

@@ -23,7 +23,7 @@ export default function App({images}:{images:string[] | []| undefined}) {
         autoplay={
           {delay:2000}
         }
-        navigation={true}
+        navigation={false}
         pagination={{
           clickable: true,
         }}
@@ -35,7 +35,9 @@ export default function App({images}:{images:string[] | []| undefined}) {
             return    <SwiperSlide key={img}>
               <Box sx={{height:{xs:'100%',md:'600px'}}}>
 
-            <img className='img contain' src={`${img}`} alt={'Product Image'} />
+            <img
+            style={{maxHeight:'600px'}}
+            className='img contain' src={`${img}`} alt={'Product Image'} />
               </Box>
           </SwiperSlide>
           })
