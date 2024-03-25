@@ -8,7 +8,7 @@ import { server } from "@/Utils/Server"
 async function fetchData() {
   try {
     // const req = await fetch(`https://www.thecraftroom-lb.com/api/get-data`,{ cache: 'no-store' ,next:{revalidate:0}});
-    const req = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/get-data`,{cache:'default'});
+    const req = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/get-data`,{cache:'no-store'});
     let res = await req.json();
     if (res) return res
     // use the response 'res' as needed
