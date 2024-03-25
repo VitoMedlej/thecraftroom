@@ -15,7 +15,7 @@ import AddressForm from '@/Components/checkoutComponents/AddressForm';
 import ReviewForm from '@/Components/checkoutComponents/ReviewForm';
 import { server } from '@/Utils/Server';
 import { loadState, saveState } from '@/Utils/LocalstorageFn';
-import { useDiscountContext, usePromoContext } from '@/context/Contexts';
+import { useCartLengthContext, useDiscountContext, usePromoContext } from '@/context/Contexts';
 import { useParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
 import totalCal from '@/Utils/totalCal';
 
@@ -43,6 +43,7 @@ function getStepContent(step: number,setInfo:any,handleChange:any,info:any,setAc
   const {discountedPrice, setDiscountedPrice} = useDiscountContext();
   const {promoCode, setpromoCode} = usePromoContext();
   const searchParams = useSearchParams()
+  const {setCartLength} = useCartLengthContext();
  
   const p = searchParams.get('p')
  
@@ -106,6 +107,7 @@ function getStepContent(step: number,setInfo:any,handleChange:any,info:any,setAc
   setDiscountedPrice(0)
   setpromoCode(null)
   saveState('shping-list',null)
+  setCartLength(0)
 
 }
   }
