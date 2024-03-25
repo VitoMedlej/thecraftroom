@@ -180,7 +180,7 @@ onClick={()=>router.push(`${'cricut machines'.replace(/ /g, '-').toLocaleLowerCa
      </Box>
 
       <Box/>
-        <HomeProductsCarousel Collectiontitle={"Browse Our Collections"} delay={3000} data={data?.featuredProducts}/>
+        <HomeProductsCarousel Collectiontitle={"Featured Products"} delay={3000} data={  data?.featuredProducts  }/>
         <Container>
         <Typography
                 className='sectionTitle text-center center auto box'
@@ -206,7 +206,7 @@ onClick={()=>router.push(`${'cricut machines'.replace(/ /g, '-').toLocaleLowerCa
                 }
               </Box>
         </Container>
-        <HomeProductCollection products={ data?.products }/>
+        <HomeProductCollection products={data?.products }/>
 
       
         

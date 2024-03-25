@@ -27,7 +27,7 @@ const HomeProductCollection = ({products} : {
                 },
                 fontWeight: '300'
             }}>
-                Featured Products
+               Browse Our Collection
             </Typography>
             <Btn
                 onClick={() => router.push('/collection/products')}

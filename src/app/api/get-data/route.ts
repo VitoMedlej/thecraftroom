@@ -16,6 +16,7 @@ try {
     const featuredProductsQuery = await ProductsCollection
         .find({isFeatured: true})
         // .find({})
+        .sort({_id: -1})
         .limit(20)
     const ProductsQuery = await ProductsCollection
         // .find({isFeatured: false})
