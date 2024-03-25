@@ -8,6 +8,7 @@ export const CartContext = createContext < any > ({});
 export const Categories = createContext < any > ([]);
 export const DiscountContext = createContext < any > (0);
 export const PromoContext = createContext < any > (0);
+export const CartLengthContext = createContext < any > (0);
 
 
 
@@ -23,9 +24,12 @@ export const PromoContext = createContext < any > (0);
                 setCates] = useState([]);
     const [discountedPrice, setDiscountedPrice] = useState(0);
     const [promoCode, setpromoCode] = useState(null);
+    const [cartLength, setCartLength] = useState(0);
 
             return (
                 <PromoContext.Provider value={{promoCode,setpromoCode}}>
+                <CartLengthContext.Provider value={{cartLength,setCartLength}}>
+
 
                 <DiscountContext.Provider value={{discountedPrice,setDiscountedPrice}}>
 
@@ -33,16 +37,16 @@ export const PromoContext = createContext < any > (0);
         <Categories.Provider value={{cates, setCates}}>
         <CartContext.Provider value={{cartOpen, setCartOpen}}>
         {/* <SideBar cates={cates}/> */}
-                {/* <NextNProgress/> */}
             {/* <QuickCart/> */}
             
-            {/* <NextNProgress color='red'/> */}
             {children}
    
         </CartContext.Provider>
         </Categories.Provider>
     </DrawerContext.Provider>
     </DiscountContext.Provider>
+    </CartLengthContext.Provider>
+
     </PromoContext.Provider>
 
             )
@@ -55,3 +59,4 @@ export const useCartContext = () => useContext(CartContext);
 export const useCategoriesContext = () => useContext(Categories);
 export const useDiscountContext = () => useContext(DiscountContext);
 export const usePromoContext = () => useContext(PromoContext);
+export const useCartLengthContext = () => useContext(CartLengthContext);

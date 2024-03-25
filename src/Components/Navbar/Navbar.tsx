@@ -20,7 +20,9 @@ import {AiOutlineHome,AiOutlineHeart,AiOutlineShoppingCart} from 'react-icons/ai
 import SearchInput from './SearchInput';
 
 import NavButtom from './NavButtom';
-import { useCartContext, useDrawerContext } from '@/context/Contexts';
+import { useCartContext, useCartLengthContext, useDrawerContext } from '@/context/Contexts';
+import { loadState } from '@/Utils/LocalstorageFn';
+import useCart from '@/Hooks/useCart';
 
 
 
@@ -37,21 +39,25 @@ export const categories = [
 ]
 export default function Navbar() {
     const {open, setOpen} = useDrawerContext();
+
+    const {cartLength, setCartLength} = useCartLengthContext();
     const [openModal,
         setOpenModal] = useState(false);
-    
-    const [localCart,
-        setLocalCart] = useState([]);
+
 
     const {cartOpen, setCartOpen} = useCartContext();
     const router = useRouter()
-    // const localCart = [1]
-    useEffect(() => {
-        const cart : any = []
-        // const cart = loadState('shping-list') || []
-        if (cart) {
 
-            setLocalCart(cart)
+    useEffect(() => {
+  
+        const cart = loadState('shping-list') || '[]'
+        if (cart && cart?.length > 0) {
+
+            setCartLength(cart?.length)
+        }
+        else {
+            setCartLength(0)
+
         }
     }, [cartOpen])
 
@@ -182,10 +188,10 @@ export default function Navbar() {
                                 margin : '8px',padding:0,
                             color: 'black'
                         }}>
-                            {/* <Badge color='primary' badgeContent={`${localCart.length || '0'}`}> */}
+                            <Badge color='primary' badgeContent={`${cartLength || 0}`}>
 
                                 <AiOutlineShoppingCart color='black'/>
-                            {/* </Badge> */}
+                            </Badge>
                             {/* <Typography>
                                 Cart
                             </Typography> */}
@@ -270,9 +276,9 @@ export default function Navbar() {
                             sx={{
                             color: 'black'
                         }}>
-                            {/* <Badge color='primary' badgeContent={`${localCart.length || '0'}`}> */}
+                            <Badge color='primary' badgeContent={`${cartLength|| '0'}`}>
                                 <CiShoppingCart color='black'/>
-                            {/* </Badge> */}
+                            </Badge>
                             {/* <Typography>
                                 Cart
                             </Typography> */}
