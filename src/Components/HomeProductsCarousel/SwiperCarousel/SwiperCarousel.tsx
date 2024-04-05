@@ -69,6 +69,8 @@ const SwiperCarousel = ({data, delay} : {
                     }}
                         key={item._id}>
                         <ProductCard
+            soon={item?.soon ? item?.soon : false}
+
                           inStock={item?.inStock 
                           }
             newPrice={item?.newPrice}

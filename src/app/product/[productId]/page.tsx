@@ -90,44 +90,90 @@ const Index = () => {
                In Stock
              </Typography> */}
             
-   {data?.product?.inStock !== false &&          <Typography 
-                 component={'h1'} sx={{my:.25,fontWeight:500,color:'green',fontSize:{xs:'1em',sm:'1.25sem'}}}>
-                 ${data?.product?.newPrice ? data?.product?.newPrice  : data?.product?.price || 0}
-             </Typography>
-             
-            }
-         </Box>
-   
-      
-         
-         {data?.product?.inStock !== false ?     <Box className='flex wrap ' sx={{my:2,position:'relative'}}>
-              <Box sx={{width:'100%'}}>
+            {data?.product?.soon ? (
+    <Typography
+        sx={{
+            my: 0.5,
+            color: 'green',
+            fontWeight: '600',
+            fontSize: { xs: '1.01em', sm: '1.16em' }
+        }}
+    >
+        Coming Soon
+    </Typography>
+) : (
+    <>
+        {data?.product?.inStock !== false && (
+            <>
+                <Typography 
+                    component={'h1'} 
+                    sx={{
+                        my: 0.25,
+                        fontWeight: 500,
+                        color: 'green',
+                        fontSize: { xs: '1em', sm: '1.25sem' }
+                    }}
+                >
+                    ${data?.product?.newPrice ? data?.product?.newPrice : data?.product?.price || 0}
+                </Typography>
+                <Box className='flex wrap' sx={{ my: 2, position: 'relative' }}>
+                    <Box sx={{ width: '100%' }}>
+                        <QuantityPicker 
+                            onChange={(e: number) => { setSelectedQuantity(e) }}
+                            min={1} max={3} value={selectedQuantity}
+                        />
+                    </Box>
+                    <Btn 
+                        onClick={() => addToCart(selectedQuantity, `${data?.product?._id}`, { 
+                            title: data.product.title,
+                            category: data.product.category,
+                            img: data.product.images[0],
+                            _id: data.product._id,
+                            price: data.product.newPrice ? data.product.newPrice : data.product.price,
+                            selectedColor
+                        }, true, true)}
+                        sx={{
+                            gap: 0.5,
+                            borderRadius: 25,
+                            width: { xs: '100%', sm: '49%' }
+                        }}
+                    >
+                        Add To Cart <AiOutlineShoppingCart fontSize={'medium'} />
+                    </Btn>
+                    <Btn
+                        sx={{
+                            border: 'none',
+                            background: 'transparent',
+                            color: 'green',
+                            gap: 0.5,
+                            mt: 0.5,
+                            ":hover": { color: 'black' },
+                            width: { xs: '100%', sm: '49%' }
+                        }}
+                    >
+                        WhatsApp <BsWhatsapp fontSize={'medium'} />
+                    </Btn>
+                </Box>
+            </>
+        )}
+        {!data?.product?.inStock && (
+            <Typography
+                component={'h1'}
+                sx={{
+                    color: 'red',
+                    fontWeight: 500,
+                    pt: 1,
+                    fontSize: { xs: '1.5em', sm: '2.25sem' }
+                }}
+            >
+                Out of Stock
+            </Typography>
+        )}
+    </>
+)}
 
-             <QuantityPicker 
-                    onChange={(e:number)=>{setSelectedQuantity(e)}}
-                    
-                    min={1} max={3} value={selectedQuantity}/>
-              </Box>
+    </Box>
 
-       <Btn 
-                     onClick={()=>addToCart(selectedQuantity,`${data?.product?._id}`,{title : data.product.title ,category: data.product.category,img:data.product.images[0], _id : data.product._id,price:data.product.newPrice ? data.product.newPrice: data.product.price, selectedColor},true,true)}
-             
-              sx={{gap:.5,
-                borderRadius:25,
-             width:{xs:'100%',sm:'49%' }}}>
-                 Add To Cart
-                 <AiOutlineShoppingCart  fontSize={'medium'}/>
-             </Btn>
-             <Btn   sx={{border:'none',background:'transparent', color:'green',gap:.5,mt:.5,":hover":{color:'black'},width:{xs:'100%',sm:'49%'}}}>
-                 WhatsApp 
-                 <BsWhatsapp fontSize={'medium'}/>
-             </Btn>
-             </Box>
-            :
-            <Typography component={'h1'} sx={{color:'red',fontWeight:500,pt:1,fontSize:{xs:'1.5em',sm:'2.25sem'}}}>
-            Out of Stock
-           </Typography> 
-            }
          <Divider></Divider>
 
          <Box sx={{pt:4}}>

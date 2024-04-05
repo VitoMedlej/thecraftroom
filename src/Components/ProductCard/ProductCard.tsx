@@ -14,6 +14,7 @@ const ProductCard = ({
     images,
     category,
     _id,
+    soon,
     width,
     newPrice,
     height,
@@ -23,6 +24,7 @@ const ProductCard = ({
     _id: string,
     inStock ?: boolean,
 title: string,
+soon : boolean,
     price: number,
     images: string[],
     category: string,
@@ -114,81 +116,78 @@ title: string,
                 </Typography> */}
 
 
-{newPrice ?   <Typography
+{soon ? (
+    <Typography
+        sx={{
+            my: 0.5,
+            color: 'green', // Customize the color as needed
+            fontWeight: '400',
+            fontSize: { xs: '1.01em', sm: '1.16em' }
+        }}
+    >
+        Coming Soon
+    </Typography>
+) : (
+    newPrice ? (
+        <Typography
+            sx={{
+                display: inStock !== false ? 'flex' : 'none',
+                my: 0.5,
+                color: 'green',
+                fontWeight: '400',
+                fontSize: { xs: '1.01em', sm: '1.16em' }
+            }}
+        >
+            <del>${price}</del>{' '}
+            <span style={{ color: 'red' }}>${newPrice}</span>
+        </Typography>
+    ) : (
+        <Typography
+            sx={{
+                display: inStock !== false ? 'flex' : 'none',
+                my: 0.5,
+                color: 'green',
+                fontWeight: '400',
+                fontSize: { xs: '1.01em', sm: '1.16em' }
+            }}
+        >
+            ${price || 0}
+        </Typography>
+    )
+)}
 
-                    sx={{
-                        display: inStock !== false ? 'flex':'none',
+{!soon && inStock !== false ? (
+    <Box className="flex">
+        {!whishedItem && (
+            <Btn
+                className='cursor gap1'
+                onClick={() => addToCart(1, _id, { title, category, img: images[0], _id, price: Number(newPrice) ? Number(newPrice) : price }, true)}
+                sx={{
+                    color: 'white',
+                    width: '70%',
+                    borderRadius: 25
+                }}
+            >
+                Add To Cart
+            </Btn>
+        )}
+        <WishlistButton onRemove={onRemove} productId={_id} product={{ title, price, images, category, _id, width, height }} />
+    </Box>
+) : (
+    !soon && (
+        <Typography
+            sx={{
+                mb: 0.5,
+                color: 'red',
+                fontWeight: '600',
+                fontSize: { xs: '0.99em', sm: '1.06em' }
+            }}
+        >
+            Out Of Stock
+        </Typography>
+    )
+)}
 
-                        my: .5,
-                    color:'green',
-                    fontWeight: '400',
-                    fontSize: {xs:'1.01em',sm:'1.16em'}
-                }}>
-                    <del>
-                    ${price}
-                    </del>
-                    {' '}
-                    <span style={{color:'red'}}>{' '}${ newPrice}</span>
-                    
-                     </Typography>
-                     
-                    : 
-                
-                    <Typography
-                    sx={{
-                        display: inStock !== false ? 'flex':'none',
-                        my: .5,
-                    color:'green',
-                    fontWeight: '400',
-                    fontSize: {xs:'1.01em',sm:'1.16em'}
-                }}>
-                 
-                   ${price || 0}
-                   
-                    
-                     </Typography>
-                    }
-
-          {inStock !== false ?      <Box className="flex">
-
-          {!whishedItem &&      <Btn
-            className='cursor gap1'
-                
-                     onClick={()=>addToCart(1,_id,{title,category,img:images[0],_id,price: Number(newPrice) ?Number(newPrice) : price},true)}
-                    
-                    sx={{
-                        color:'white',
-                        width:'70%',
-                   
-                    borderRadius:25,
-                  
-                 
-                }}>
-                    Add To Cart
-                </Btn>}
-
-           
-                <WishlistButton onRemove={onRemove} productId={_id} product={{ title,
-    price,
-    images,
-    category,
-    _id,
-    width,
-    height}}/>
-                </Box>
-                :
-
-                      <Typography
-                      sx={{
-                      mb:.5,
-                      color:'red',
-                      fontWeight: '600',
-                      fontSize: {xs:'.99em',sm:'1.06em'}
-                  }}>
-                      Out Of Stock
-                  </Typography>
-            
-            }
 
                 </Box>
 
