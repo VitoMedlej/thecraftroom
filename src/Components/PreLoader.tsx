@@ -196,10 +196,12 @@ onClick={()=>router.push(`${'cricut machines'.replace(/ /g, '-').toLocaleLowerCa
             }}>
               Shop By Brand
             </Typography>
-              <Box className='wrap   flex gap1 gap'>
+              <Box sx={{justifyContent:{xs:'space-between',sm:'center'}}} className='wrap   flex gap1 gap'>
                 {
-                  brands.map(i=>{
-                    return <Box className='cursor pointer' key={i?.img} onClick={()=>router.push(`/collection/products?brand=${encodeURIComponent(i.title)}`)} sx={{border:'1px solid #80808030',height:'100px',width:{xs:'49%',sm:'150px'}}}>
+                  brands?.map(i=>{
+                    return <Box className='cursor pointer' key={i?.img} onClick={()=>router.push(`/collection/products?brand=${encodeURIComponent(i.title)}`)} 
+                    sx={{border:'1px solid #80808030',height:'100px',
+                    width:{xs:'47%',sm:'150px'}}}>
                       <img src={i?.img} alt="" className="img contain" />
                     </Box>
                   })

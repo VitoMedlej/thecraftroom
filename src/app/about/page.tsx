@@ -18,7 +18,7 @@ const text = [
 const Index = () => {
   return (
     <Container maxWidth='lg' className='auto' sx={{mx:1,py:22}}>
-           <Typography sx={{mb:1,mx:'auto',fontSize:'2.5em',fontWeight:'600'}} className=" center text-center">
+           <Typography sx={{mb:1,mx:'auto',pt:4,fontSize:'2.5em',fontWeight:'600'}} className=" center text-center">
             ABOUT US
         </Typography>
         <Box sx={{width:'100%',height:'400px'}}>
