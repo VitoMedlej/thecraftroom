@@ -175,6 +175,8 @@ const Cart = () => {
                 sx={{
                 fontSize: '1.5em',
                 padding: 1,
+                mt:4,
+                pt:2,
                 fontWeight: '600'
             }}>My Cart</Typography>}
             <Box  sx={{
