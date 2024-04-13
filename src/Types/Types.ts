@@ -3,6 +3,7 @@ export interface IProduct {
     price: number;
     soon : boolean;
     _id: string;
+    new ?: boolean;
     description: string;
     images: string[] | [];
     attributes ?: [] | 

@@ -47,6 +47,8 @@ const HomeProductCollection = ({products} : {
                     ?.length > 0 && products.map(i => {
 
                         return <ProductCard
+            newArrival={i?.new ? i?.new : false}
+
             soon={i?.soon ? i?.soon : false}
 
                         inStock={i?.inStock 

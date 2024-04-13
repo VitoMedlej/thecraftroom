@@ -17,11 +17,13 @@ const ProductCard = ({
     soon,
     width,
     newPrice,
+    newArrival,
     height,
     whishedItem,
     onRemove
 } : {
     _id: string,
+    newArrival?: boolean
     inStock ?: boolean,
 title: string,
 soon : boolean,
@@ -75,12 +77,35 @@ soon : boolean,
                     className="img contain"/>
 
             </Box>
-             {getDiscountPercentage(price,newPrice) &&  <Box sx={{position:'absolute',borderRadius:'50%',top:'0%',left:'1%',zIndex:1, width:'50px',height:'50px',background:'red'}}>
+             {getDiscountPercentage(price,newPrice) ?
+
+             <Box sx={{position:'absolute',borderRadius:'50%',top:'0%',left:'1%',zIndex:1, width:'50px',height:'50px',background:'red'}}>
+             <Typography className='flex center items-center' sx={{fontSize:'.75em',alignItems:'center',justifyContent:'center',height:'100%',color:'white'}}>
+
+                 -{getDiscountPercentage(price,newPrice) }%
+             </Typography>
+               </Box>
+
+             :
+             soon ? 
+             <Box sx={{position:'absolute',borderRadius:'50%',top:'0%',left:'1%',zIndex:1, width:'50px',height:'50px',background:'red'}}>
+             <Typography className='flex center items-center' sx={{fontSize:'.75em',alignItems:'center',justifyContent:'center',height:'100%',color:'white'}}>
+
+                SOON
+             </Typography>
+               </Box> :
+               newArrival &&
+
+             <Box sx={{position:'absolute',borderRadius:'50%',top:'0%',left:'1%',zIndex:1, width:'50px',height:'50px',background:'red'}}>
                   <Typography className='flex center items-center' sx={{fontSize:'.75em',alignItems:'center',justifyContent:'center',height:'100%',color:'white'}}>
 
-                      -{getDiscountPercentage(price,newPrice) }%
+                     NEW!
                   </Typography>
-                    </Box>}
+                    </Box>
+                    
+                }
+
+
             <Box 
             sx={{
                 px: .95
@@ -127,7 +152,8 @@ soon : boolean,
     >
         Coming Soon
     </Typography>
-) : (
+) : 
+(
     newPrice ? (
         <Typography
             sx={{

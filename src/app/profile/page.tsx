@@ -77,6 +77,8 @@ const Index = () => {
                         wishlistItems && wishlistItems?.length > 0 ? wishlistItems.map((item:any)=>{
                             if (!item?._id) return;
                             return <ProductCard
+            newArrival={item?.new ? item?.new : false}
+
                             soon={item?.soon ? item?.soon : false}
                             key={item?._id}
                             inStock={item?.inStock 
