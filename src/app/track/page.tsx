@@ -2,7 +2,7 @@
 import Btn from '@/Components/Btn/Btn';
 import React, { useState } from 'react'
 
-const page = () => {
+const Page = () => {
     const [orderNumber, setOrderNumber] = useState('0')
     console.log('orderNumber: ', orderNumber);
     async function fetchData() {
@@ -46,4 +46,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
