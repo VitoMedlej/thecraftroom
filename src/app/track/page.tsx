@@ -12,7 +12,7 @@ const Page = () => {
         formData.append('order_number', orderNumber);
         try {
           const response = await fetch(url, {
-            method: "GET", // or 'POST'
+            method: "POST", // or 'POST'
             headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${token}`,
