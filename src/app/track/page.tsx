@@ -13,6 +13,7 @@ const Page = () => {
         try {
           const response = await fetch(url, {
             method: "POST", // or 'POST'
+            mode: 'no-cors',
             headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${token}`,
