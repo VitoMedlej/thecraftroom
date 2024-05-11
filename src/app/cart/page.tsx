@@ -194,6 +194,7 @@ const Cart = () => {
                     cartItems.map(item=>{
                         if (!item?._id) return;
                         return <CartProduct 
+                        stock={Number(item?.stock)}
                         selectedColor={item?.selectedColor}
                         onChange={refetchState}
                         key={item._id}

@@ -78,7 +78,7 @@ const Index = () => {
                             if (!item?._id) return;
                             return <ProductCard
             newArrival={item?.new ? item?.new : false}
-
+            stock={Number(item?.stock)}
                             soon={item?.soon ? item?.soon : false}
                             key={item?._id}
                             inStock={item?.inStock 

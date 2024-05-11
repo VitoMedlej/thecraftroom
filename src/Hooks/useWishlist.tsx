@@ -7,6 +7,7 @@ const useCart = () => {
     // const {chipStatus, setChipStatus} = useChipContext();
 
     const addtoWishlist = (_id : string, product : {
+        stock: any,
         title: string,
         category?: string,
         img: string,
@@ -30,6 +31,7 @@ const useCart = () => {
                 img: product.img,
                 category: product.category || 'Collection',
                 title: product.title,
+                stock: product?.stock,
                 _id: product._id,
                 price: product.price
             });

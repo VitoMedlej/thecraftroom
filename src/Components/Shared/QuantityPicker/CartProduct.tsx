@@ -13,7 +13,7 @@ import Btn from '@/Components/Btn/Btn';
 
 
 
-const CartProduct = ({onChange,_id,price,category,title,remove,qty,img,selectedColor}:ICartItem) => {
+const CartProduct = ({onChange,_id,price,stock,category,title,remove,qty,img,selectedColor}:ICartItem) => {
  
     const {incrementQty} = useCart()
     return (

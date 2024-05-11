@@ -16,9 +16,12 @@ export interface IProduct {
     isFeatured?: boolean;
     newPrice?:number;
     inStock ?:boolean;
+    stock:number;
 }
 export interface ICartItem {
     newPrice?: number;
+    stock: number;
+
     title: string;
     _id: string;
     price: number;

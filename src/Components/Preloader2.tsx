@@ -80,6 +80,7 @@ const Preloader2 = ({data,totalPages}:any) => {
     }}>
         {products && products?.length > 0 ? products.map((i:IProduct) => {
             return <ProductCard
+            stock={Number(i?.stock)}
             soon={i?.soon ? i?.soon : false}
             newArrival={i?.new ? i?.new : false}
 

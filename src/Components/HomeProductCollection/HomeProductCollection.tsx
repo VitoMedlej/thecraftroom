@@ -30,6 +30,7 @@ const HomeProductCollection = ({products} : {
                Browse Our Collection
             </Typography>
             <Btn
+            className='auto'
                 onClick={() => router.push('/collection/products')}
                 sx={{
                 border: 'none',
@@ -50,7 +51,7 @@ const HomeProductCollection = ({products} : {
             newArrival={i?.new ? i?.new : false}
 
             soon={i?.soon ? i?.soon : false}
-
+            stock={Number(i?.stock)}
                         inStock={i?.inStock 
                         }
                             newPrice={i

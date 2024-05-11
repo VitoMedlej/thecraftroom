@@ -109,7 +109,8 @@ const Index = () => {
     </Typography>
 ) : (
     <>
-        {data?.product?.inStock !== false && (
+        {data?.product?.inStock !== false && Number(data?.product?.stock) !== 0 && (
+          
             <>
                 <Typography 
                     component={'h1'} 
@@ -126,7 +127,8 @@ const Index = () => {
                     <Box sx={{ width: '100%' }}>
                         <QuantityPicker 
                             onChange={(e: number) => { setSelectedQuantity(e) }}
-                            min={1} max={3} value={selectedQuantity}
+                            min={1} max={3} 
+                            value={selectedQuantity}
                         />
                     </Box>
                     <Btn 
@@ -162,7 +164,7 @@ const Index = () => {
                 </Box>
             </>
         )}
-        {!data?.product?.inStock && (
+        {/* {!data?.product?.inStock && (
             <Typography
                 component={'h1'}
                 sx={{
@@ -174,7 +176,16 @@ const Index = () => {
             >
                 Out of Stock
             </Typography>
-        )}
+        )} */}
+          { Number(data?.product?.stock) !== 0 && data?.product?.inStock !== false ? 
+           <Typography className='green' component={'h1'} sx={{fontSize:'1.05em',fontWeight:300}}>
+               In Stock 
+             </Typography>
+            : 
+            <Typography className='red' component={'h1'} sx={{color:'red',fontSize:'1.25em',fontWeight:300}}>
+               Out of stock
+             </Typography>
+            }
     </>
 )}
 

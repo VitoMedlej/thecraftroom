@@ -18,12 +18,14 @@ const ProductCard = ({
     width,
     newPrice,
     newArrival,
+    stock,
     height,
     whishedItem,
     onRemove
 } : {
     _id: string,
     newArrival?: boolean
+    stock : number;
     inStock ?: boolean,
 title: string,
 soon : boolean,
@@ -154,7 +156,7 @@ soon : boolean,
     </Typography>
 ) : 
 (
-    newPrice ? (
+    newPrice  ? (
         <Typography
             sx={{
                 display: inStock !== false ? 'flex' : 'none',
@@ -170,7 +172,7 @@ soon : boolean,
     ) : (
         <Typography
             sx={{
-                display: inStock !== false ? 'flex' : 'none',
+                display: Number(stock) === 0 || inStock !== false ? 'flex' : 'none',
                 my: 0.5,
                 color: 'green',
                 fontWeight: '400',
@@ -182,7 +184,7 @@ soon : boolean,
     )
 )}
 
-{!soon && inStock !== false ? (
+{!soon && inStock !== false && Number(stock) !== 0 ? (
     <Box className="flex">
         {!whishedItem && (
             <Btn

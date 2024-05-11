@@ -282,7 +282,7 @@ export  async function POST(req: NextRequest, res: NextApiResponse) {
 let discountedPrice = order?.discountedPrice || 0
   if (req.method === 'POST') {
     // Process a POST request
-    if (!order || !order?.info?.email) return NextResponse.json({success:false})
+    if (!order || !order?.info?.phone) return NextResponse.json({success:false})
        const insertReq = await client.db("CRAFT").collection("Orders").insertOne({...order,orderID: `${orderId}`});
         await client.db("CRAFT").collection("OrdersBACKUP").insertOne({...order,orderID: `${orderId}`});
        if (insertReq.acknowledged ) {         
@@ -290,7 +290,49 @@ let discountedPrice = order?.discountedPrice || 0
 
             await increaseUsageCountPromo(order?.promoCode)
         }         
-         await sendOrderConfirmationEmail(discountedPrice,orderId,`${order?.info?.email}`,order?.products)
+
+
+        for (const product of order.products) {
+            const { _id, qty } = product;
+  
+            if (isNaN(Number(qty)) || Number(qty) <= 0) {
+              return NextResponse.json({ success: false, message: 'Invalid quantity for product' });
+            }
+  
+            const existingProduct = await client.db("CRAFT")
+              .collection("Products")
+              .findOne({ _id: new ObjectId(_id) });
+  
+            const currentStock = parseInt(existingProduct?.stock);
+            const currentSoldQuantity = parseInt(existingProduct?.soldQuantity) || 0;
+  
+            if (isNaN(currentStock)) {
+              return NextResponse.json({ success: false, message: 'Invalid stock value for product' });
+            }
+  
+            const newStock = currentStock - Number(qty);
+            console.log('newStock: ', newStock);
+            const newSoldQuantity = currentSoldQuantity + Number(qty);
+            console.log('newSoldQuantity: ', newSoldQuantity);
+  
+            const updateStockReq = await client.db("CRAFT").collection("Products").updateOne(
+              { _id: new ObjectId(_id) },
+              { $set: { stock: newStock.toString(), soldQuantity: newSoldQuantity.toString() } }
+              );
+              console.log('updateStockReq: ', updateStockReq);
+  
+            if (!updateStockReq.acknowledged) {
+              return NextResponse.json({ success: false, message: 'Failed to update stock values' });
+            }
+            const emailSent = await sendOrderConfirmationEmail(discountedPrice,orderId,`${order?.info?.email}`,order?.products)
+          
+                if (emailSent) {
+              return NextResponse.json({ success: true });
+            }
+          }
+
+
+        
 
 
 
