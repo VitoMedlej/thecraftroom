@@ -39,10 +39,10 @@ const WishlistButton = ({ productId, product ,onRemove} : {onRemove?: (id:string
                         color:'red',
                         border:'none',
                         py:0,
-                        fontSize:'1.5em',
+                        fontSize:'1.25em',
                     borderRadius:0,
                         height:'100%',
-                        width:'30%'
+                        width:{xs:'20%',sm:'30%'}
                  
                 }}>
                   {liked

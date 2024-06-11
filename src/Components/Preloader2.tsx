@@ -64,7 +64,7 @@ const Preloader2 = ({data,totalPages}:any) => {
        
     //   })
   return (
-    <Container sx={{mt:15}} disableGutters maxWidth='lg'>
+    <Container sx={{mt:18}} disableGutters maxWidth='lg'>
     <Box
         sx={{
         width: '100%',

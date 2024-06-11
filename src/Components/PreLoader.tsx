@@ -129,7 +129,7 @@ PreLoader = ({data,resImages}:any) => {
 onClick={()=>router.push(`${'cricut machines'.replace(/ /g, '-').toLocaleLowerCase() || 'collection'}/products`)}
  className='cursor'
  sx={{borderRadius:'50%',height:{xs:'48vw',sm:'24vw',md:'24vw',lg:'15vw'},
- my:2,width:{xs:'48vw',sm:'24vw',md:'24vw',lg:'15vw'}}}>
+ my:2,width:{xs:'45vw',sm:'24vw',md:'24vw',lg:'15vw'}}}>
         <img src={resImages?.first} alt={`cricut Machines Images image`} style={{borderRadius:'2%'}} className="img" />
         <Typography sx={{fontWeight:'500',fontSize:'.65em',textAlign: 'center',px:1}}>
         Cricut Machines
@@ -200,7 +200,7 @@ onClick={()=>router.push(`${'cricut machines'.replace(/ /g, '-').toLocaleLowerCa
                 {
                   brands?.map(i=>{
                     return <Box className='cursor pointer' key={i?.img} onClick={()=>router.push(`/collection/products?brand=${encodeURIComponent(i.title)}`)} 
-                    sx={{border:'1px solid #80808030',height:'100px',
+                    sx={{border:'1px solid transparent',height:'100px',
                     width:{xs:'47%',sm:'150px'}}}>
                       <img src={i?.img} alt="" className="img contain" />
                     </Box>

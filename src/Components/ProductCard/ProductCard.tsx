@@ -55,15 +55,21 @@ soon : boolean,
             sx={{
             border : '1px solid #000000a',
             py: 1,
-            margin:{xs: '.25em auto' ,sm: '.35em auto'},
-            minWidth: {xs:'200px',sm:'32%',md:'283px',lg:'300px'},
+            margin:{xs: '1em auto' ,sm: '.55em auto'},
+            // minWidth: {xs:'200px',sm:'32%',md:'283px',lg:'300px'},
             width: width
                 ? width
-                : {
-                    xs: '98%',
+                : 
+                {
+                    xs: '49%',
                     sm: '32%',
                     xl:'23%'
                 }
+                // {
+                //     xs: '98%',
+                //     sm: '32%',
+                //     xl:'23%'
+                // }
         }}>
             <Box 
             className='cursor'
@@ -125,7 +131,7 @@ soon : boolean,
 
                     onClick={() => router.push(`/product/${_id}`)}
                     sx={{
-                    fontSize: {xs:'.89em',sm:'1.195em'},
+                    fontSize: {xs:'.69em',sm:'1.195em'},
                     fontWeight: '500'
                 }}>
                     {title}
@@ -192,7 +198,9 @@ soon : boolean,
                 onClick={() => addToCart(1, _id, { title, category, img: images[0], _id, price: Number(newPrice) ? Number(newPrice) : price }, true)}
                 sx={{
                     color: 'white',
-                    width: '70%',
+                    padding:'inherit',
+                    width: {xs:'80%',sm:'70%'},
+                    fontSize:{xs:'.56em',sm:'.8em'},
                     borderRadius: 25
                 }}
             >
