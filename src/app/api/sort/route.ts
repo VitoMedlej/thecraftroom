@@ -36,6 +36,7 @@ export async function GET(req :NextRequest , res : NextApiResponse) {
     const category = nextUrl.searchParams.get('category');
     const search = nextUrl.searchParams.get('search') ;
     const sort = nextUrl.searchParams.get('sort') || 'latest';
+    console.log('vals: ', {sort,search,category});
    
             // let page = 0;
             // let category = null
@@ -58,6 +59,12 @@ export async function GET(req :NextRequest , res : NextApiResponse) {
           default:
             sortCriteria = {_id : -1};
         }
+
+
+
+
+
+        
         let filterByCate = !category || category === 'collection' || category === 'category' ? null : `${category}`.toLocaleLowerCase()
     const ProductsCollection = await client
         .db("CRAFT")
@@ -66,33 +73,44 @@ export async function GET(req :NextRequest , res : NextApiResponse) {
 
 
    
-    const ProductsQuery = 
-    
-    search && search?.length > 1 ?      await ProductsCollection.find({
-      $or: [
-          { title: { $regex: search, $options: 'i' } },
-          { description: { $regex: search, $options: 'i' } },
-          { category: { $regex: search, $options: 'i' } }
-      ]
-  }) :
-    await ProductsCollection.aggregate([
-        {
-          $match: filterByCate && filterByCate !== 'null' && filterByCate !== null
-            ? { category: filterByCate }
-            : {}
-        },
-        {
-          $addFields: {
-            convertedPrice: { $toDouble: '$price' }
+    let pipeline : any = [
+      {
+          $match: {
+              $and: [
+                  { new: { $ne: true } }, // Exclude documents where 'new' is true
+                  { price: { $ne: '' } }, // Exclude documents where 'price' is an empty string
+                  filterByCate && filterByCate !== 'null' && filterByCate !== null
+                      ? { category: filterByCate }
+                      : {}
+              ]
           }
-        },
-        {
+      },
+      {
           $sort: sortCriteria
-        },
-        {
+      },
+      {
           $limit: 50
-        }
-      ]);
+      }
+  ];
+  
+  if (sort !== 'latest') {
+      // Insert the $addFields stage only when not sorting by 'latest'
+      pipeline.splice(1, 0, {
+          $addFields: {
+              convertedPrice: { $toDouble: '$price' }
+          }
+      });
+  }
+  
+  const ProductsQuery = search && search?.length > 1 ? 
+      await ProductsCollection.find({
+          $or: [
+              { title: { $regex: search, $options: 'i' } },
+              { description: { $regex: search, $options: 'i' } },
+              { category: { $regex: search, $options: 'i' } }
+          ]
+      }) :
+      await ProductsCollection.aggregate(pipeline);
 
     await ProductsQuery.forEach((doc : any) => {
 
