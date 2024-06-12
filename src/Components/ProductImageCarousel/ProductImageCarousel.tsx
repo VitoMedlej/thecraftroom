@@ -12,9 +12,10 @@ import "swiper/css/pagination";
 
 // import required modules
 import { Autoplay, Pagination } from "swiper";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import { getDiscountPercentage } from "../ProductCard/ProductCard";
 
-export default function App({images}:{images:string[] | []| undefined}) {
+export default function App({data}:{data : any}) {
   return (
     <>
       <Swiper
@@ -28,17 +29,45 @@ export default function App({images}:{images:string[] | []| undefined}) {
           clickable: true,
         }}
         modules={[Autoplay, Pagination]}
-        className="mySwiper"
+        className="mySwiper relative"
       >
+
 {
-          images && images.map(img=>{
-            return    <SwiperSlide key={img}>
+          data && data?.product?.images && data?.product?.images.map((img:any)=>{
+            return    <SwiperSlide className='relative' key={img}>
               <Box sx={{height:{xs:'100%',md:'600px'}}}>
 
             <img
             style={{maxHeight:'600px'}}
             className='img contain' src={`${img}`} alt={'Product Image'} />
               </Box>
+              {getDiscountPercentage(data?.product?.price,data?.product?.newPrice) ?
+
+<Box sx={{position:'absolute',borderRadius:'50%',right:'85%',zIndex:'2',top:'2%', width:'50px',height:'50px',background:'red'}}>
+<Typography className='flex center items-center' sx={{fontSize:'.75em',alignItems:'center',justifyContent:'center',height:'100%',color:'white'}}>
+
+    -{getDiscountPercentage(data?.product?.price,data?.product?.newPrice) }%
+</Typography>
+  </Box>
+
+:
+data?.product?.soon ? 
+<Box sx={{position:'absolute',borderRadius:'50%',top:'3%',right:'85%',zIndex:'2', width:'50px',height:'50px',background:'red'}}>
+<Typography className='flex center items-center' sx={{fontSize:'.75em',alignItems:'center',justifyContent:'center',height:'100%',color:'white'}}>
+
+   SOON
+</Typography>
+  </Box> :
+  data?.product?.new &&
+
+<Box sx={{position:'absolute',borderRadius:'50%',top:'3%',right:'85%',zIndex:'2', width:'50px',height:'50px',background:'red'}}>
+     <Typography className='flex center items-center' sx={{fontSize:'.75em',alignItems:'center',justifyContent:'center',height:'100%',color:'white'}}>
+
+        NEW!
+     </Typography>
+       </Box>
+       
+   }
           </SwiperSlide>
           })
         }

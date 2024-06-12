@@ -15,6 +15,7 @@ import { IProduct } from '@/Types/Types'
 import { useParams } from 'next/navigation'
 import { server } from '@/Utils/Server'
 import { QuantityPicker } from '@/Components/Shared/QuantityPicker/QuantityPicker'
+import { getDiscountPercentage } from '@/Components/ProductCard/ProductCard'
 
 const Index = () => {
     const {productId} = useParams()
@@ -73,9 +74,15 @@ const Index = () => {
 {!loading && data?.product !== undefined && data?.product?.title ? 
  <Grid sx={{mx:{xs:'auto'},mt:{xs:'4.5em',sm:0},maxWidth:'lg',pt:{sm:15,md:15,lg:9}}} className='' container>
        <Grid  item xs={12}  md={7} >
-         <ProductImageCarousel images={data?.product?.images}/>
+         <ProductImageCarousel data={data} />
    
-       </Grid>
+    
+
+    
+   </Grid>
+
+
+
        <Grid sx={{
         border:'1px solid #00000029',
         px:{xs:1,sm:1.5}}} item xs={12}  md={5}>
@@ -109,6 +116,7 @@ const Index = () => {
     </Typography>
 ) : (
     <>
+
         {data?.product?.inStock !== false && Number(data?.product?.stock) !== 0 && (
           
             <>

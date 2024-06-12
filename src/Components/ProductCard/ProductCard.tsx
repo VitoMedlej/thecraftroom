@@ -7,6 +7,23 @@ import Btn from '../Btn/Btn'
 import {useRouter} from 'next/navigation'
 import useCart from '@/Hooks/useCart'
 import WishlistButton from './WishlistButton'
+
+
+
+
+
+
+export function getDiscountPercentage(oldPrice: number, newPrice?: number): number | undefined {
+    if (!oldPrice || !newPrice || !Number(oldPrice) || !Number(newPrice)) {
+      return undefined;
+    }
+    const discount = Number(oldPrice) - Number(newPrice);
+    const discountPercentage = (discount / oldPrice) * 100;
+    return Number(discountPercentage.toFixed(1)) || undefined;
+  }
+
+
+
 const ProductCard = ({
     title,
     inStock,
@@ -41,14 +58,7 @@ soon : boolean,
     const router = useRouter()
     const {addToCart}= useCart()
     // const [liked,setLiked] = React.useState(false)
- function getDiscountPercentage(oldPrice: number, newPrice?: number): number | undefined {
-        if (!oldPrice || !newPrice || !Number(oldPrice) || !Number(newPrice)) {
-          return undefined;
-        }
-        const discount = Number(oldPrice) - Number(newPrice);
-        const discountPercentage = (discount / oldPrice) * 100;
-        return Number(discountPercentage.toFixed(1)) || undefined;
-      }
+
     return (
         <Box
             className='relative  trans'
